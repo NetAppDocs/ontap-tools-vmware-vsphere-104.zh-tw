@@ -1,0 +1,183 @@
+---
+permalink: configure/create-datastore.html 
+sidebar: sidebar 
+keywords:  
+summary: 在主機叢集層級建立資料儲存時，此資料儲存體會在目標的所有主機上建立並掛載，且只有目前使用者有執行權限時才會啟用此操作。 
+---
+= 建立資料儲存區
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在主機叢集層級建立資料儲存時，此資料儲存體會在目標的所有主機上建立並掛載，且只有目前使用者有執行權限時才會啟用此操作。
+
+*本機資料儲存與 vCenter Server 與ONTAP工具所管理的資料儲存之間的互通性*
+
+ONTAP tools for VMware vSphere為資料儲存區建立巢狀 igroup，其中父 igroup 特定於資料儲存區，子 igroup 會對應到主機。您可以從ONTAP系統管理員建立平面 igroup，並使用它們建立 VMFS 資料儲存庫，而無需使用ONTAP工具。參考 https://docs.netapp.com/us-en/ontap/san-admin/manage-san-initiators-task.html["管理 SAN 啟動器和 igroup"]了解更多。
+
+當儲存加入ONTAP工具並執行資料儲存發現時，平面 igroup 和 VMFS 資料儲存將由ONTAP工具管理並轉換為巢狀 igroup。您不能使用早期的平面 igroup 來建立新的資料儲存庫；您必須使用ONTAP工具使用者介面或 REST API 來重複使用巢狀 igroup。
+
+[role="tabbed-block"]
+====
+.建立vVols資料存儲
+--
+從適用於ONTAP tools for VMware vSphere開始，您可以在ASA r2 系統上建立具有與 thin.vVol 相同的空間效率的vVols資料儲存。VASA 提供者在建立 vVol 資料儲存時建立一個容器和所需的協定端點。該容器將沒有任何後備卷。
+
+.開始之前
+* 確保根聚合未對應到 SVM。
+* 確保 VASA 提供者已在選定的 vCenter 中註冊。
+* 在ASA r2 儲存系統中，SVM 應對應到 SVM 使用者的聚合。
+
+
+.步驟
+. 登入 vSphere 客戶端。
+. 右鍵點選主機系統、主機叢集或資料中心，然後選擇 * NetApp ONTAP工具 * > * 建立資料儲存 *。
+. 選擇vVols *資料儲存類型*。
+. 輸入*資料儲存名稱*和*協定*資訊。
++
+
+NOTE: ASA r2 系統支援vVols的 iSCSI 和 FC 協定。
+
+. 選擇要建立資料儲存的儲存虛擬機器。
+. 在進階選項下：
++
+** 如果您選擇*自訂匯出策略*，請確保在 vCenter 中對所有物件執行發現。建議您不要使用此選項。
+** 您可以為 iSCSI 和 FC 協定選擇 *自訂啟動器群組* 名稱。
++
+
+NOTE: 在ASA r2 儲存系統類型 SVM 中，不會建立儲存單元（LUN/命名空間），因為資料儲存只是一個邏輯容器。
+
+
+
+. 在「儲存屬性」窗格中，您可以建立新磁碟區或使用現有磁碟區。但是，您不能組合這兩種類型的磁碟區來建立vVols資料儲存。
++
+建立新磁碟區時，您可以在資料儲存體上啟用 QoS。預設情況下，每個 LUN 建立請求都會建立一個磁碟區。此步驟不適用於使用ASA r2 儲存系統的vVols資料儲存。
+
+. 在「*摘要*」窗格中檢查您的選擇並選擇「*完成*」。
+
+
+--
+.建立 NFS 資料存儲
+--
+VMware 網路檔案系統 (NFS) 資料儲存使用 NFS 協定透過網路將 ESXi 主機連接到共用儲存裝置。  NFS 資料儲存通常用於 VMware vSphere 環境，並具有簡單性和靈活性等多種優勢。
+
+.步驟
+. 登入 vSphere 客戶端。
+. 右鍵點選主機系統、主機叢集或資料中心，然後選擇 * NetApp ONTAP工具* > * 建立資料儲存*。
+. 在「資料儲存類型」欄位中選擇「NFS」。
+. 在「名稱和協定」窗格中輸入資料儲存名稱、大小和協定資訊。在進階選項中選擇*資料儲存叢集*和*Kerberos身份驗證*。
++
+
+NOTE: 僅當選擇 NFS 4.1 協定時，Kerberos 身份驗證才可用。
+
+. 在「儲存」窗格中選擇「平台」和「儲存虛擬機器」。
+. 如果您在進階選項下選擇“自訂匯出策略”，則在 vCenter 中針對所有物件執行發現。建議您不要使用此選項。
++
+
+NOTE: 您不能使用 SVM 的預設/根磁碟區策略建立 NFS 資料儲存庫。
+
++
+** 在進階選項中，只有在平台下拉選單中選擇效能或容量時，*不對稱*切換按鈕才可見。
+** 當您在平台下拉選單中選擇「*任何*」選項時，您可以看到屬於 vCenter 的 SVM，而不管平台或非對稱標誌為何。
+
+
+. 在「儲存屬性」窗格中選擇用於建立磁碟區的聚合。在進階選項中，根據需要選擇*空間預留*和*啟用QoS*。
+. 查看「*摘要*」窗格中的選擇並選擇「*完成*」。
+
+
+NFS 資料儲存區已建立並安裝在所有主機上。
+
+--
+.建立 VMFS 資料存儲
+--
+虛擬機器檔案系統 (VMFS) 是一種叢集檔案系統，用於在 VMware vSphere 環境中儲存虛擬機器檔案。  VMFS 允許多個 ESXi 主機同時存取相同的虛擬機器文件，從而實現 vMotion 和高可用性等功能。
+
+在受保護的叢集上：
+
+* 您只能建立 VMFS 資料儲存區。當您將 VMFS 資料儲存區新增至受保護的叢集時，該資料儲存區將自動受到保護。
+* 您無法在具有一個或多個受保護主機叢集的資料中心上建立資料儲存區。
+* 如果父主機群集受到「自動故障轉移雙工策略」類型（統一/非統一配置）關係的保護，則無法在 ESXi 主機上建立資料儲存。
+* 您只能在受非同步關係保護的 ESXi 主機上建立 VMFS 資料儲存。您無法在受「自動故障轉移雙工」政策保護的主機叢集的一部分的 ESXi 主機上建立和掛載資料儲存。
+
+
+.開始之前
+* 在ONTAP儲存端為每個協定啟用服務和 LIF。
+* 將 SVM 對應到ASA r2 儲存系統中的 SVM 使用者的聚合。
+* 如果您使用 NVMe/TCP 協議，請設定 ESXi 主機：
++
+.. 回顧 https://www.vmware.com/resources/compatibility/detail.php?deviceCategory=san&productid=49677&releases_filter=589,578,518,508,448&deviceCategory=san&details=1&partner=399&Protocols=1&transportTypes=3&isSVA=0&page=1&display_interval=10&sortColumn=Partner&sortOrder=Asc["VMware 相容性指南"]
++
+
+NOTE: VMware vSphere 7.0 U3以上版本支援NVMe/TCP協定。但建議使用 VMware vSphere 8.0 及更高版本。
+
+.. 驗證網路介面卡 (NIC) 供應商是否支援採用 NVMe/TCP 協定的 ESXi NIC。
+.. 根據 NIC 供應商規格為 NVMe/TCP 配置 ESXi NIC。
+.. 使用 VMware vSphere 7 版本時，請依照 VMware 網站上的說明進行操作 https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/7-0/vsphere-storage-7-0/about-vmware-nvme-storage/configure-adapters-for-nvme-over-tcp-storage/configure-vmkernel-binding-for-the-tcp-adapter.html["為 NVMe over TCP 適配器配置 VMkernel 綁定"]配置NVMe/TCP連接埠綁定。使用 VMware vSphere 8 版本時，請遵循 https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-storage-8-0/about-vmware-nvme-storage/configuring-nvme-over-tcp-on-esxi.html["在 ESXi 上設定 NVMe over TCP"]，配置NVMe/TCP連接埠綁定。
+.. 對於 VMware vSphere 7 版本，請按照第頁上的說明進行操作 https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/7-0/vsphere-storage-7-0/about-vmware-nvme-storage/add-software-nvme-over-rdma-or-nvme-over-tcp-adapters.html["啟用 NVMe over RDMA 或 NVMe over TCP 軟體適配器"]配置 NVMe/TCP 軟體適配器。對於 VMware vSphere 8 版本，請關注 https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-storage-8-0/about-vmware-nvme-storage/configuring-nvme-over-rdma-roce-v2-on-esxi/add-software-nvme-over-rdma-or-nvme-over-tcp-adapters.html["新增軟體 NVMe over RDMA 或 NVMe over TCP 適配器"]配置 NVMe/TCP 軟體適配器。
+.. 跑步link:../configure/discover-storage-systems-and-hosts.html["發現儲存系統和主機"]ESXi 主機上的操作。有關更多信息，請參閱 https://community.netapp.com/t5/Tech-ONTAP-Blogs/How-to-Configure-NVMe-TCP-with-vSphere-8-0-Update-1-and-ONTAP-9-13-1-for-VMFS/ba-p/445429["如何使用 vSphere 8.0 Update 1 和ONTAP 9.13.1 為 VMFS 資料儲存配置 NVMe/TCP"] 。
+
+
+* 如果您使用 NVME/FC 協議，請執行下列步驟設定 ESXi 主機：
++
+.. 如果尚未啟用，請在 ESXi 主機上啟用 NVMe over Fabrics (NVMe-oF)。
+.. 完成 SCSI 分區。
+.. 確保 ESXi 主機和ONTAP系統在實體層和邏輯層上連線。
+
+
+
+
+若要為 FC 協定配置ONTAP SVM，請參閱 https://docs.netapp.com/us-en/ontap/san-admin/configure-svm-fc-task.html["為 FC 配置 SVM"]。
+
+有關將 NVMe/FC 協定與 VMware vSphere 8.0 結合使用的更多信息，請參閱 https://docs.netapp.com/us-en/ontap-sanhost/nvme_esxi_8.html["帶有ONTAP的 ESXi 8.x 的 NVMe-oF 主機配置"]。
+
+有關將 NVMe/FC 與 VMware vSphere 7.0 結合使用的更多信息，請參閱 https://docs.netapp.com/us-en/ontap-sanhost/nvme_esxi_8.html["ONTAP NVMe/FC 主機設定指南"]和 http://www.netapp.com/us/media/tr-4684.pdf["TR-4684"]。
+
+.步驟
+. 登入 vSphere 客戶端。
+. 右鍵點選主機系統、主機叢集或資料中心，然後選擇 * NetApp ONTAP工具 * > * 建立資料儲存 *。
+. 選擇 VMFS 資料儲存類型。
+. 在「名稱和協定」窗格中輸入資料儲存名稱、大小和協定資訊。如果選擇將新資料儲存體新增至現有的 VMFS 資料儲存群集，請選擇進階選項下的資料儲存叢集選擇器。
+. 在「儲存」窗格中選擇儲存虛擬機器。根據需要在*進階選項*部分提供*自訂啟動器群組名稱*。您可以為資料儲存體選擇現有的 igroup，也可以建立一個具有自訂名稱的新 igroup。
++
+當選擇NVMe/FC或NVMe/TCP協定時，會建立一個新的命名空間子系統，並用於命名空間映射。命名空間子系統是使用包含資料儲存名稱的自動產生名稱建立的。您可以在「儲存」窗格的進階選項中的「自訂命名空間子系統名稱」欄位中重新命名命名空間子系統。
+
+. 從*儲存屬性*窗格：
++
+.. 從下拉選項中選擇*聚合*。
++
+
+NOTE: 對於ASA r2 儲存系統，由於ASA r2 儲存是分解式存儲，因此不會顯示「*聚合*」選項。當您選擇ASA r2 儲存系統類型的 SVM 時，儲存屬性頁面會顯示用於啟用 QoS 的選項。
+
+.. 根據所選協議，建立一個具有精簡類型空間預留的儲存單元（LUN/命名空間）。
++
+
+NOTE: 從ONTAP 9.16.1 開始， ASA r2 儲存系統每個叢集最多支援 12 個節點。
+
+.. 為具有 12 個節點 SVM（異質叢集）的ASA r2 儲存系統選擇「效能服務等級」。如果選定的 SVM 是同類叢集或使用 SVM 用戶，則此選項不可用。
++
+「任何」是預設的效能服務等級 (PSL) 值。此設定使用ONTAP平衡放置演算法建立儲存單元。但是，您可以根據需要選擇效能或極限選項。
+
+.. 根據需要選擇*使用現有磁碟區*、*啟用 QoS*選項，並提供詳細資訊。
++
+
+NOTE: 在ASA r2 儲存類型中，磁碟區建立或選擇不適用於儲存單元建立（LUN/命名空間）。因此，這些選項不會顯示。
+
++
+
+NOTE: 您不能使用現有磁碟區來建立具有 NVMe/FC 或 NVMe/TCP 協定的 VMFS 資料儲存體；您應該建立一個新磁碟區。
+
+
+
+. 查看“*摘要*”窗格中的資料儲存詳細資訊並選擇“*完成*”。
+
+
+
+NOTE: 如果在受保護的叢集上建立資料存儲，則可以看到一條唯讀訊息：“資料存儲正在被掛載到受保護的叢集上。”
+
+.結果
+VMFS 資料儲存區已建立並安裝在所有主機上。
+
+--
+====

@@ -1,0 +1,244 @@
+---
+permalink: manage/igroup-workflow.html 
+sidebar: sidebar 
+keywords:  
+summary:  
+---
+= 了解適用ONTAP tools for VMware vSphere中的 igroup 和匯出策略
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+啟動器群組 (igroup) 是 FC 協定主機全球連接埠名稱 (WWPN) 或 iSCSI 主機限定節點名稱的資料表。您可以定義 igroup 並將其對應到 LUN，以控制哪些啟動器可以存取 LUN。
+
+在ONTAP tools for VMware vSphere中，igroup 是在扁平結構中建立和管理的，其中 vCenter 中的每個資料儲存都與單一 igroup 相關聯。此模型限制了跨多個資料儲存的 igroup 的靈活性和重複使用性。ONTAP tools for VMware vSphere引入了巢狀 igroup，其中 vCenter 中的每個資料儲存體都與一個父 igroup 相關聯，而每個主機都連結到該父 igroup 下的子 igroup。您可以使用使用者定義的名稱定義自訂父 igroup，以便在多個資料儲存區中重複使用，從而實現更靈活且互連的 igroup 管理。了解 igroup 工作流程對於在ONTAP tools for VMware vSphere中有效管理 LUN 和資料儲存庫至關重要。不同的工作流程會產生不同的 igroup 配置，如下範例所示：
+
+
+NOTE: 所提及的名稱僅供說明之用，並不代表真實的 igroup 名稱。ONTAP工具管理的 igroup 使用前綴「otv_」。自訂 igroup 可以賦予任意名稱。
+
+|===
+
+
+| 學期 | 描述 
+
+
+| DS<編號> | 資料儲存 
+
+
+| iqn<數字> | 發起者 IQN 
+
+
+| 主機<編號> | 主機 MoRef 
+
+
+| lun<數字> | LUN ID 
+
+
+| <DS名稱>Igroup<編號> | 預設（ONTAP工具管理）父 igroup 
+
+
+| <Host-Moref>Igroup<編號> | 兒童組 
+
+
+| CustomIgroup<編號> | 使用者定義的自訂父 igroup 
+
+
+| ClassicIgroup<編號> | ONTAP工具 9.x 版本中使用的 Igroup。 
+|===
+.範例 1：
+使用一個啟動器在單一主機上建立資料儲存區
+
+*工作流程*：[創建] DS1（lun1）：host1（iqn1）
+
+*結果*：
+
+* DS1I組：
++
+** host1Igroup → (iqn1: lun1)
+
+
+
+
+在ONTAP系統上為 DS1 建立了一個父 igroup DS1Igroup，並將一個子 igroup host1Igroup 對應到 lun1。  LUN 始終對應到子 igroup。
+
+.範例 2：
+將現有資料儲存掛載到其他主機
+
+*工作流程*：[掛載] DS1 (lun1): host2 (iqn2)
+
+*結果*：
+
+* DS1I組：
++
+** host1Igroup → (iqn1: lun1)
+** host2Igroup → (iqn2: lun1)
+
+
+
+
+建立子 igroup host2Igroup 並將其新增至現有的父 igroup DS1Igroup。
+
+.範例 3：
+從主機卸載資料存儲
+
+*工作流程*：[卸載] DS1 (lun1): host1 (iqn1)
+
+*結果*：
+
+* DS1I組：
++
+** host2Igroup → (iqn2: lun1)
+
+
+
+
+host1Igroup 已從層次結構中刪除。子 igroup 未被明確刪除。在以下兩種情況下會發生刪除：
+
+* 如果沒有對應任何 LUN，則ONTAP系統將刪除子 igroup。
+* 計劃的清理作業將刪除沒有 LUN 對應的懸空子 igroup。這些場景僅適用於ONTAP工具管理的 igroup，而不適用於自訂所建立的 igroup。
+
+
+.範例 4：
+刪除資料儲存區
+
+*工作流程*：[刪除] DS1 (lun1): host2 (iqn2)
+
+*結果*：
+
+* DS1I組：
++
+** host2Igroup → (iqn2: lun1)
+
+
+
+
+如果另一個資料儲存體不重複使用父 igroup，則會刪除父 igroup 和子 igroup。子 igroup 永遠不會被明確刪除
+
+.範例 5：
+在自訂父 igroup 下建立多個資料存儲
+
+*工作流程*：
+
+* [創建] DS2（lun2）：host1（iqn1），host2（iqn2）
+* [創建] DS3 (lun3): host1 (iqn1), host3 (iqn3)
+
+
+*結果*：
+
+* 自訂I組1：
++
+** 主機 1I 群組 → (iqn1: lun2, lun3)
+** host2Igroup → (iqn2: lun2)
+** host3Igroup → (iqn3: lun3)
+
+
+
+
+CustomIgroup1 是為 DS2 建立的，並可重複用於 DS3。子 igroup 在共用父級下建立或更新，每個子 igroup 對應到其相關的 LUN。
+
+.範例 6：
+刪除自訂父 igroup 下的資料儲存。
+
+*工作流程*：[刪除] DS2 (lun2): host1 (iqn1), host2 (iqn2)
+
+*結果*：
+
+* 自訂I組1：
++
+** host1Igroup → (iqn1: lun3)
+** host3Igroup → (iqn3: lun3)
+
+
+* 即使 CustomIgroup1 沒有重複使用，它也不會被刪除。
+* 如果沒有對應任何 LUN，則ONTAP系統將刪除 host2Igroup。
+* host1Igroup 不會被刪除，因為它已對應到 DS3 的 lun3。自訂 igroup 永遠不會被刪除，無論其重用狀態為何。
+
+
+.範例 7：
+擴充vVols資料儲存（新增磁碟區）
+
+*工作流程*：
+
+擴充前：
+
+[展開] DS4 (lun4): host4 (iqn4)
+
+* DS4Igroup：host4Igroup→（iqn4：lun4）
+
+
+擴展後：
+
+[展開] DS4 (lun4, lun5): host4 (iqn4)
+
+* DS4Igroup：host4Igroup→（iqn4：lun4，lun5）
+
+
+建立一個新的 LUN 並將其對應到現有的子 igroup host4Igroup。
+
+.範例 8：
+縮小vVols資料儲存（刪除磁碟區）
+
+*工作流程*：
+
+收縮前：
+
+[收縮] DS4 (lun4, lun5): host4 (iqn4)
+
+* DS4Igroup：host4Igroup→（iqn4：lun4，lun5）
+
+
+收縮後：
+
+[收縮] DS4（lun4）：host4（iqn4）
+
+* DS4Igroup：host4Igroup→（iqn4：lun4）
+
+
+指定的 LUN (lun5) 已從子 igroup 取消對應。只要 igroup 至少有一個已映射的 LUN，它就會保持活動狀態。
+
+.範例 9：
+從ONTAP工具 9 遷移到 10（igroup 規範化）
+
+*工作流程*
+
+VMware vSPhere 9.x 版本的ONTAP工具不支援分層 igroup。在遷移到 10.3 或更高版本期間，必須將 igroup 規範化到層次結構中。
+
+遷移之前：
+
+[遷移] DS6 (lun6, lun7): host6 (iqn6), host7 (iqn7) → ClassicIgroup1 (iqn6 & iqn7 : lun6, lun7)
+
+ONTAP工具 9.x 邏輯允許每個 igroup 有多個啟動器，而無需強制一對一主機對映。
+
+遷移後：
+
+[遷移] DS6 (lun6, lun7): host6 (iqn6), host7 (iqn7) → ClassicIgroup1: otv_ClassicIgroup1 (iqn6 & iqn7 : lun6, lun7)
+
+遷移期間：
+
+* 建立一個新的父 igroup（ClassicIgroup1）。
+* 原始 igroup 以 otv_ 前綴重命名並成為子 igroup。
+
+
+這確保符合分層模型。
+
+.相關主題
+https://docs.netapp.com/us-en/ontap/san-admin/igroups-concept.html["關於 igroup"]
+
+
+
+== 出口政策
+
+匯出策略控制對ONTAP tools for VMware vSphere中的 NFS 資料儲存庫的存取。它們定義哪些客戶端可以存取資料儲存以及他們擁有什麼權限。匯出策略在ONTAP系統中建立和管理，並且可以與 NFS 資料儲存庫關聯以實施存取控制。每個匯出策略均由指定允許存取的用戶端（IP 位址或子網路）和授予的權限（唯讀或讀寫）的規則組成。
+
+在ONTAP tools for VMware vSphere中建立 NFS 資料儲存庫時，您可以選擇現有的匯出策略或建立新的匯出策略。然後將導出策略應用於資料存儲，確保只有授權的客戶端才能存取它。
+
+當您在新的 ESXi 主機上掛載 NFS 資料儲存庫時，ONTAP tools for VMware vSphere會將主機的 IP 位址新增至與資料儲存庫關聯的現有匯出策略中。這允許新主機存取資料存儲，而無需建立新的匯出策略。
+
+當您從 ESXi 主機移除或解除安裝 NFS 資料儲存庫時，ONTAP tools for VMware vSphere會從匯出原則中移除該主機的 IP 位址。如果沒有其他主機使用該匯出策略，它將被刪除。刪除 NFS 資料儲存庫時，如果該資料儲存庫未被任何其他資料儲存庫重複使用，則ONTAP tools for VMware vSphere會移除與該資料儲存庫關聯的匯出策略。如果重複使用出口策略，它將保留主機IP位址並保持不變。當您刪除資料儲存庫時，匯出策略會取消指派主機 IP 位址並指派預設匯出策略，以便ONTAP系統可以在需要時存取它們。
+
+在不同資料儲存之間重複使用匯出策略時，指派匯出策略的方式會有所不同。重複使用匯出策略時，您可以將新的主機 IP 位址附加到政策中。刪除或解除安裝使用共用匯出策略的資料儲存體時，該原則不會被刪除。它會保持不變，並且主機 IP 位址不會被移除，因為它與其他資料儲存共享。不建議重複使用匯出策略，因為這可能會導致存取和延遲問題。
+
+.相關主題
+https://docs.netapp.com/us-en/ontap/nfs-config/create-export-policy-task.html["建立導出策略"]

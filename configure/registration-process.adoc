@@ -1,0 +1,33 @@
+---
+permalink: configure/registration-process.html 
+sidebar: sidebar 
+keywords:  
+summary: 您可以使用適用於ONTAP tools for VMware vSphere將 VASA 提供者註冊至 vCenter Server 執行個體。 
+---
+= 向 vCenter Server 執行個體註冊 VASA 提供者
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用適用於ONTAP tools for VMware vSphere將 VASA 提供者註冊至 vCenter Server 執行個體。 VASA 提供者設定部分顯示所選 vCenter Server 的 VASA 提供者註冊狀態。在多重 vCenter 部署中，請確保每個 vCenter Server 執行個體都有自訂 CA 憑證。
+
+.步驟
+. 登入 vSphere 客戶端。
+. 在插件部分下選擇 *捷徑* > * NetApp ONTAP工具*。
+. 選擇“設定”>“VASA 提供者設定”。VASA 提供者註冊狀態將顯示為未註冊。
+. 選擇「*註冊*」按鈕來註冊 VASA 提供者。
+. 輸入 VASA 提供者的名稱和憑證。使用者名稱只能包含字母、數字和底線。密碼長度應在 8 到 256 個字元之間。
+. 選擇*註冊*。
+. 註冊成功並重新整理頁面後，將顯示已註冊的 VASA 提供者的狀態、名稱和版本。註冊後，取消註冊操作已啟動。
+
+
+.下一步
+驗證已加入的 VASA 提供者是否在 vCenter 用戶端的 VASA 提供者下列出：
+
+.步驟
+. 導航至 vCenter Server 執行個體。
+. 使用管理員憑證登入。
+. 選擇*儲存提供者* > *配置*。驗證已加入的 VASA 提供者是否正確列出。
+

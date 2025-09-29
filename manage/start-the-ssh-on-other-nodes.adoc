@@ -1,0 +1,30 @@
+---
+permalink: manage/start-the-ssh-on-other-nodes.html 
+sidebar: sidebar 
+keywords:  
+summary: 升級之前，您需要在其他節點上啟動 SSH。 
+---
+= 在其他節點上啟動SSH
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+升級之前，您需要在其他節點上啟動 SSH。
+
+.開始之前
+應該為您的 vCenter Server 執行個體啟用 VASA 提供者擴充。
+
+*關於此任務*
+
+升級之前，請在每個節點上執行此程序。
+
+.步驟
+. 從 vCenter Server 開啟 VASA Provider 控制台。
+. 以維護使用者登入。
+. 進入 `4`選擇支持和診斷。
+. 進入 `1`選擇訪問診斷外殼。
+. 進入 `y`繼續。
+. 運行命令_sudo systemctl restart ssh_。
+

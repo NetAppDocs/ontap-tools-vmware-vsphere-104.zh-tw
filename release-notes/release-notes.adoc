@@ -1,0 +1,20 @@
+---
+permalink: release-notes/release-notes.html 
+sidebar: sidebar 
+keywords: release notes, ontap tools for VMware vSphere 
+summary: 提供有關此版本的適用ONTAP tools for VMware vSphere的重要信息，包括新功能和增強功能、已修復的問題、已知問題、注意事項和限制。 
+---
+= 發行說明
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+了解適用於ONTAP tools for VMware vSphere中的新功能和增強功能。
+
+有關新功能和增強功能的完整列表，請參閱xref:whats-new.adoc[適用於ONTAP tools for VMware vSphere的新功能]。
+
+若要詳細了解從適用ONTAP tools for VMware vSphere移轉到ONTAP工具 10.4 是否適合您的部署，請參閱xref:ontap-tools-9-ontap-tools-10-feature-comparison.adoc[ONTAP tools for VMware vSphere與ONTAP tools for VMware vSphere功能比較]。支援從適用於ONTAP tools for VMware vSphere遷移到ONTAP tools for VMware vSphere。
+
+欲了解更多信息，請參閱 https://library.netapp.com/ecm/ecm_download_file/ECMLP3343864["ONTAP tools for VMware vSphere發行說明"^]。您必須使用您的NetApp帳戶登入或建立帳戶才能存取發行說明。

@@ -1,0 +1,170 @@
+---
+permalink: concepts/ontap-tools-concepts-terms.html 
+sidebar: sidebar 
+keywords:  
+summary: 以下部分描述了文件中使用的關鍵概念和術語。 
+---
+= 關鍵概念和術語
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+以下部分描述了文件中使用的關鍵概念和術語。
+
+
+
+=== ASA r2 系統
+
+全新NetApp ASA r2 系統提供統一的硬體和軟體解決方案，可針對僅使用 SAN 的客戶的需求提供簡化的體驗。 https://docs.netapp.com/us-en/asa-r2/get-started/learn-about.html["了解ASA r2 儲存系統"] 。
+
+
+
+=== 憑證授權單位 (CA)
+
+CA 是頒發安全通訊端層 (SSL) 憑證的受信任實體。
+
+
+
+=== 一致性組（CG）
+
+一致性組是作為單一單元進行管理的磁碟區的集合。CG 同步以確保跨儲存單元和磁碟區的資料一致性。在ONTAP中，它們為跨多個磁碟區的應用程式工作負載提供了輕鬆的管理和保護保障。詳細了解 https://docs.netapp.com/us-en/ontap/consistency-groups/index.html["一致性組"]。
+
+
+
+=== 雙堆疊
+
+雙堆疊網路是一種支援同時使用 IPv4 和 IPv6 位址的網路環境。
+
+
+
+=== 高可用性（HA）
+
+叢集節點以 HA 對的形式配置，以實現無中斷運行。
+
+
+
+=== 邏輯單元號碼 (LUN)
+
+LUN 是用於識別儲存區域網路 (SAN) 內的邏輯單元的編號。這些可尋址設備通常是透過小型電腦系統介面 (SCSI) 協定或其封裝衍生協定之一存取的邏輯磁碟。
+
+
+
+=== NVMe 命名空間和子系統
+
+NVMe 命名空間是一定數量的可格式化為邏輯區塊的非揮發性記憶體。命名空間相當於 FC 和 iSCSI 協定的 LUN，而 NVMe 子系統類似於 igroup。  NVMe 子系統可以與啟動器關聯，以便關聯的啟動器可以存取子系統內的命名空間。
+
+
+
+=== ONTAP工具管理器
+
+ONTAP工具管理器ONTAP tools for VMware vSphere的更多控制，使其能夠更好地控制受管 vCenter Server 執行個體和板載儲存後端。它有助於管理 vCenter Server 執行個體、儲存後端、憑證、密碼和日誌包下載。
+
+
+
+=== 開放虛擬設備 (OVA)
+
+OVA 是用於打包和分發必須在虛擬機器上運行的虛擬設備或軟體的開放標準。
+
+
+
+=== 恢復點目標（RPO）
+
+RPO 衡量您備份或複製資料的頻率。它指定了中斷後恢復資料以恢復業務運營所需的確切時間點。例如，如果某個組織的 RPO 為 4 小時，則它可以容忍在災難發生時遺失最多 4 小時的資料。
+
+
+
+=== SnapMirror主動同步
+
+SnapMirror主動同步使業務服務即使在整個站點發生故障時也能繼續運行，支援應用程式使用輔助副本透明地進行故障轉移。無需手動幹預或自訂腳本即可透過SnapMirror主動同步觸發故障轉移。詳細了解 https://docs.netapp.com/us-en/ontap/snapmirror-active-sync/index.html["SnapMirror主動同步"]。
+
+
+
+=== 儲存後端
+
+儲存後端是 ESXi 主機用於儲存虛擬機器檔案、資料和其他資源的底層儲存基礎架構。它們允許 ESXi 主機存取和管理持久性數據，為虛擬化環境提供所需的儲存能力和效能。
+
+.全域叢集（儲存後端）
+全域儲存後端僅可透過ONTAP叢集憑證使用，並透過ONTAP工具管理器介面進行安裝。可以以最小權限新增它們，以便發現vVols管理所需的基本叢集資源。全域叢集非常適合多租用戶場景，其中在本地新增 SVM 使用者以進行vVols管理。
+
+.本機儲存後端
+具有叢集或 SVM 憑證的本機儲存後端透過ONTAP工具使用者介面添加，並且僅限於 vCenter。在本機使用叢集憑證時，關聯的 SVM 會自動與 vCenter 對應以管理vVols或 VMFS。對於 VMFS 管理（包括 SRA）， ONTAP工具支援 SVM 憑證，而無需全域叢集。
+
+
+
+=== 儲存複製適配器 (SRA)
+
+SRA 是安裝在 VMware Live Site Recovery 設備內部的儲存供應商特定軟體。此適配器支援 Site Recovery Manager 與儲存虛擬機器 (SVM) 等級和叢集層級配置的儲存控制器之間的通訊。
+
+
+
+=== 儲存虛擬機器 (SVM)
+
+SVM 是ONTAP中的多租戶單元。與在虛擬機器管理程式上執行的虛擬機器一樣，SVM 是抽象實體資源的邏輯實體。  SVM 包含資料磁碟區和一個或多個 LIF，透過這些 LIF 向客戶端提供資料。
+
+
+
+=== 均勻和非均勻配置
+
+* *統一主機存取*意味著來自兩個站點的主機連接到兩個站點上的儲存叢集的所有路徑。跨站點路徑跨越距離。
+* *非統一主機存取*表示每個站點中的主機僅連接到同一站點中的叢集。跨站點路徑和延伸路徑不連接。
++
+
+NOTE: 任何SnapMirror主動同步部署都支援統一主機存取；僅對稱主動/主動部署支援非統一主機存取。詳細了解 https://docs.netapp.com/us-en/ontap/snapmirror-active-sync/index.html["ONTAP中的SnapMirror主動同步概述"]。
+
+
+
+
+
+=== 虛擬機器檔案系統 (VMFS)
+
+VMFS 是一個叢集檔案系統，旨在儲存 VMware vSphere 環境中的虛擬機器檔案。
+
+
+
+=== 虛擬磁碟區 (vVols)
+
+vVols為虛擬機器所使用的儲存空間提供了磁碟區級抽象化。它具有多種優點，並提供了使用傳統 LUN 的替代方案。vVol 資料儲存通常與單一 LUN 相關聯，該 LUN 可作為vVols的容器。
+
+
+
+=== 虛擬機器儲存策略
+
+VM 儲存策略是在 vCenter Server 的「策略和設定檔」下建立的。對於vVols，使用來自NetApp vVols儲存類型提供者的規則建立規則集。
+
+
+
+=== VMware Live Site Recovery
+
+VMware Live Site Recovery 以前稱為 Site Recovery Manager (SRM)，它為 VMware 虛擬環境提供業務連續性、災難復原、網站遷移和無中斷測試功能。
+
+
+
+=== VMware vSphere 儲存感知 API (VASA)
+
+VASA 是一組將儲存陣列與 vCenter Server 整合以進行管理的 API。此架構基於多個元件，包括處理 VMware vSphere 和儲存系統之間通訊的 VASA 提供者。
+
+
+
+=== VMware vSphere 儲存 API - 陣列整合 (VAAI)
+
+VAAI 是一組 API，可實現 VMware vSphere ESXi 主機和儲存設備之間的通訊。 API 包括一組主機用來將儲存操作卸載到陣列的原始操作。VAAI 可以為儲存密集型任務提供顯著的效能改進。
+
+
+
+=== vSphere Metro 儲存集群
+
+vSphere Metro Storage Cluster (vMSC) 是一種在延伸叢集部署中啟用和支援 vSphere 的架構。 NetApp MetroCluster和NetAppSnapMirror同步（以前稱為 SMBC）支援 vMSC 解決方案。這些解決方案在域發生故障時提供增強的業務連續性。彈性模型基於您的特定配置選擇。詳細了解 https://core.vmware.com/resource/vmware-vsphere-metro-storage-cluster-vmsc["VMware vSphere Metro 儲存群集"]。
+
+
+
+=== vVols資料存儲
+
+vVols資料儲存區是 VASA 提供者建立和維護的vVols容器的邏輯資料儲存區表示。
+
+
+
+=== 零 RPO
+
+RPO 代表恢復點目標，即在給定時間內可接受的資料遺失量。零 RPO 表示不可接受任何資料遺失。

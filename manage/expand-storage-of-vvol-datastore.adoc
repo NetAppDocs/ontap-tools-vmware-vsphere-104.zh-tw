@@ -1,0 +1,25 @@
+---
+permalink: manage/expand-storage-of-vvol-datastore.html 
+sidebar: sidebar 
+keywords: virtual volume datastores 
+summary: 當您在 vCenter 物件視圖中以滑鼠右鍵按一下資料儲存物件時，ONTAP tools for VMware vSphere支援的操作將顯示在外掛程式部分下。 
+---
+= 擴充vVols資料存儲
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+當您在 vCenter 物件視圖中以滑鼠右鍵按一下資料儲存物件時，ONTAP tools for VMware vSphere支援的操作將顯示在外掛程式部分下。根據資料儲存的類型和目前使用者權限啟用特定操作。
+
+
+NOTE: 擴充vVols資料儲存操作不適用於基於ASA r2 系統的vVols資料儲存。
+
+.步驟
+. 從 vSphere Client 主頁中，選擇「主機和叢集」。
+. 在導覽窗格中，選擇包含資料儲存區的資料中心。
+. 右鍵點選資料儲存並選擇 * NetApp ONTAP工具* > *將儲存儲存到資料儲存*。
+. 在「建立或選擇磁碟區」視窗中，您可以建立新磁碟區或從現有磁碟區中進行選擇。使用者介面是不言自明的。根據您的選擇遵循說明。
+. 在「*摘要*」視窗中，查看選擇並選擇「*展開*」。您可以在最近任務面板中追蹤進度。
+

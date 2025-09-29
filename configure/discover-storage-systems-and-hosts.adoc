@@ -1,0 +1,42 @@
+---
+permalink: configure/discover-storage-systems-and-hosts.html 
+sidebar: sidebar 
+keywords:  
+summary: 首次在 vSphere Client 中執行ONTAP tools for VMware vSphere時，ONTAP tools for VMware vSphere會發現 ESXi 主機、其 LUN 和 NFS 匯出以及擁有這些 LUN 和匯出的NetApp儲存系統。 
+---
+= 發現儲存系統和主機
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+首次在 vSphere Client 中執行ONTAP tools for VMware vSphere時， ONTAP工具會發現 ESXi 主機、其 LUN 和 NFS 匯出以及擁有這些 LUN 和匯出的NetApp儲存系統。
+
+.開始之前
+* 所有 ESXi 主機都應開啟電源並連接。
+* 所有要發現的儲存虛擬機器 (SVM) 都應該正在運行，並且每個叢集節點都應至少有一個為正在使用的儲存協定（NFS 或 iSCSI）配置的資料 LIF。
+
+
+*關於此任務*
+
+您可以發現新的儲存系統或更新現有儲存系統的信息，隨時獲取最新的容量和配置資訊。您也可以修改適用ONTAP tools for VMware vSphere用於登入儲存系統的憑證。
+
+在發現儲存系統時，ONTAP tools for VMware vSphere會從 vCenter Server 執行個體所管理的 ESXi 主機收集資訊。
+
+.步驟
+. 從 vSphere Client 主頁中，選擇「主機和叢集」。
+. 右鍵點選所需的資料中心並選擇 * NetApp ONTAP工具* > *更新主機資料*。
++
+在*確認*對話方塊中，確認您的選擇。
+
+. 選擇已發現的具有以下狀態的儲存控制器 `Authentication Failure`並選擇*操作* > *修改*。
+. 在「修改儲存系統」對話方塊中填寫所需的資訊。
+. 對所有儲存控制器重複步驟 4 和 5 `Authentication Failure`地位。
+
+
+發現過程完成後，執行以下操作：
+
+* 使用適用ONTAP tools for VMware vSphere在適配器設定列、MPIO 設定列或 NFS 設定列中顯示警報圖示的主機設定 ESXi 主機設定。
+* 提供儲存系統憑證。
+

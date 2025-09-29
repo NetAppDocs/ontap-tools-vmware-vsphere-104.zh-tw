@@ -1,0 +1,47 @@
+---
+permalink: manage/delete-ds.html 
+sidebar: sidebar 
+keywords: vVols datastore,delete vVol 
+summary: 刪除資料儲存操作會刪除資料儲存。對於 NFS 或 VMFS 資料存儲，將出現一個對話框，其中列出正在使用該資料儲存的虛擬機器的清單。 
+---
+= 刪除資料存儲
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+所有ONTAP tools for VMware vSphere均支援從資料儲存區移除儲存的操作，這些工具可在 vCenter Server 中發現或管理vVols資料儲存區。此操作允許從vVols資料儲存中刪除磁碟區。
+
+當特定磁碟區上駐留有vVols時，刪除選項將被停用。除了從資料儲存中刪除磁碟區之外，您還可以刪除ONTAP儲存上選定的磁碟區。
+
+從 vCenter Server 中的ONTAP tools for VMware vSphere中刪除資料儲存區任務執行下列操作：
+
+* 卸載 vVol 容器。
+* 清理 igroup。如果 igroup 未使用，則從 igroup 中刪除 iqn。
+* 刪除 Vvol 容器。
+* 將 Flex 磁碟區保留在儲存陣列上。
+
+
+請依照下列步驟從 vCenter Server 的ONTAP工具中刪除 NFS、VMFS 或 vVOL 資料儲存庫：
+
+.步驟
+. 登入 vSphere 客戶端。
+. 右鍵點選主機系統、主機叢集或資料中心，然後選擇 * NetApp ONTAP工具* > * 刪除資料儲存*。
++
+
+NOTE: 如果有虛擬機器正在使用該資料儲存區，則您無法刪除該資料儲存區。在刪除資料儲存之前，您需要將虛擬機器移至其他資料儲存。如果資料儲存屬於受保護的主機群集，則無法選取「磁碟區刪除」複選框。
+
++
+.. 對於 NFS 或 VMFS 資料存儲，將出現一個對話框，其中列出正在使用該資料儲存的虛擬機器的清單。
+.. 如果 VMFS 資料儲存區是在ASA r2 系統上建立的，且它是保護的一部分，則需要在刪除資料儲存區之前取消保護它。
+.. 對於vVols資料存儲，僅當沒有與之關聯的vVols時，刪除資料儲存操作才會刪除該資料儲存。刪除資料儲存庫對話方塊提供了從ONTAP叢集中刪除磁碟區的選項。
+.. 對於基於ASA r2 系統的vVols資料存儲，刪除後備卷的複選框不適用。
+
+
+. 若要刪除ONTAP儲存上的後備卷，請選擇「刪除ONTAP叢集上的磁碟區」。
++
+
+NOTE: 您無法刪除ONTAP叢集上屬於受保護主機叢集的 VMFS 資料儲存庫的磁碟區。
+
+

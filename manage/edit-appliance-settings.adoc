@@ -1,0 +1,64 @@
+---
+permalink: manage/edit-appliance-settings.html 
+sidebar: sidebar 
+keywords:  
+summary: 您可以使用ONTAP工具管理器變更管理員密碼。 
+---
+= 變更ONTAP tools for VMware vSphere
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+使用ONTAP工具管理器擴充ONTAP tools for VMware vSphere，以增加部署中的節點數量或將設定變更為高可用性 (HA) 設定。  ONTAP tools for VMware vSphere最初部署在單節點非 HA 配置中。
+
+
+NOTE: 若要在啟用非 HA 備份的情況下遷移到 HA，請先停用備份，然後在遷移後重新啟用它。
+
+.開始之前
+* 確保您的 OVA 模板與節點 1 具有相同的 OVA 版本。節點 1 是最初部署ONTAP tools for VMware vSphere的預設節點。
+* 確保 CPU 熱添加和記憶體熱插拔已啟用。
+* 在 vCenter Server 中，將災難復原服務​​ (DRS) 自動化等級設定為部分自動化。部署 HA 後，將其恢復為完全自動化。
+* HA 設定中的節點​​主機名稱應為小寫。
+
+
+.步驟
+. 從 Web 瀏覽器啟動ONTAP工具管理器： `\https://<ONTAPtoolsIP>:8443/virtualization/ui/`
+. 使用您在部署期間提供的適用於ONTAP tools for VMware vSphere管理員憑證登入。
+. 在概覽部分中選擇「編輯設備設定」。
+. 在*配置*部分，您可以根據需要進行擴充以增加節點大小並啟用 HA 配置。您需要 vCenter Server 憑證才能進行任何變更。
++
+當ONTAP工具處於 HA 配置時，您可以變更內容庫詳細資訊。您應該再次提供密碼以提交新的編輯。
+
++
+
+NOTE: 在ONTAP tools for VMware vSphere中，您只允許增加節點大小；而不能減少節點大小。在非 HA 設定中，僅支援中等規模的配置。在 HA 設定中，支援中型和大型配置。
+
+. 使用 HA 切換按鈕啟用 HA 配置。在「HA 設定」頁面上，確保：
++
+** 內容庫屬於執行ONTAP工具節點虛擬機器的相同 vCenter Server。 vCenter Server 憑證用於驗證和下載裝置變更所需的 OVA 範本。
+** 託管ONTAP工具的虛擬機器並非直接部署在 ESXi 主機上。虛擬機器應部署在叢集或資源池上。
++
+
+NOTE: 啟用 HA 設定後，您無法還原到非 HA 單節點配置。
+
+
+
+. 在「編輯設備設定」視窗的「HA 設定」部分中，您可以輸入節點 2 和 3 的詳細資訊。ONTAP tools for VMware vSphere在 HA 設定中支援三個節點。
++
+
+NOTE: 為了簡化工作流程，大多數輸入選項都預先填入了節點 1 網路詳細資訊。但是，您可以在導航到精靈的最後一頁之前編輯輸入資料。只有在第一個節點上啟用 IPv6 位址時，您才可以輸入其他兩個節點的 IPv6 位址詳細資訊。
+
++
+確保 ESXi 主機僅包含一個ONTAP工具虛擬機器。每次移動到下一個視窗時都會驗證輸入。
+
+. 查看“*摘要*”部分中的詳細資訊並“*儲存*”變更。
+
+
+.下一步是什麼？
+*概覽*頁面顯示部署的狀態。使用作業 ID，您也可以從作業檢視追蹤編輯設備設定作業的狀態。
+
+如果 HA 部署失敗且新節點的狀態顯示為“新建”，則在重試啟用 HA 操作之前，請刪除 vCenter 中的新 VM。
+
+左側面板上的「*警報*」標籤列出了適用於ONTAP tools for VMware vSphere的警報。

@@ -1,0 +1,28 @@
+---
+permalink: manage/migrate-standard-virtual-machines-to-vvols-datastores.html 
+sidebar: sidebar 
+keywords: Migrate NFS and VMFS virtual machines 
+summary: '您可以將虛擬機器從 NFS 和 VMFS 資料儲存遷移到虛擬磁碟區 (vVols) 資料存儲，以利用基於策略的 VM 管理和其他vVols功能。 vVols 資料vVols可讓您滿足不斷增長的工作負載需求。' 
+---
+= 將具有 NFS 和 VMFS 資料儲存區的虛擬機器遷移到vVols資料儲存區
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以將虛擬機器從 NFS 和 VMFS 資料儲存遷移到虛擬磁碟區 (vVols) 資料存儲，以利用基於策略的 VM 管理和其他vVols功能。 vVols 資料vVols可讓您滿足不斷增長的工作負載需求。
+
+.開始之前
+確保 VASA Provider 未在您計劃遷移的任何虛擬機器上執行。如果將執行 VASA Provider 的虛擬機器遷移到vVols資料儲存區，則無法執行任何管理操作，包括啟動vVols資料儲存區上的虛擬機器。
+
+*關於此任務*
+
+當您從 NFS 和 VMFS 資料儲存遷移到vVols資料儲存時，vCenter Server 在從 VMFS 資料儲存移動資料時使用 vStorage API 進行陣列整合 (VAAI) 卸載，但不會從 NFS VMDK 檔案移動資料。  VAAI 卸載通常會減少主機上的負載。
+
+.步驟
+. 右鍵點選要遷移的虛擬機器並選擇*遷移*。
+. 選擇*僅變更儲存*，然後選擇*下一步*。
+. 選擇虛擬磁碟格式、虛擬機器儲存策略以及與要遷移的資料儲存區的功能相符的 vVol 資料儲存區。
+. 檢查設定並選擇*完成*。
+

@@ -1,0 +1,77 @@
+---
+permalink: manage/enable-backup.html 
+sidebar: sidebar 
+keywords:  
+summary: 從適用於ONTAP tools for VMware vSphere開始，該設備使用動態儲存配置器，您無法實現零 RPO。但是，您可以實現接近零的 RPO。 
+---
+= 建立備份並恢復ONTAP工具設置
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+從適用於ONTAP tools for VMware vSphere開始，該設備使用動態儲存配置器，您無法實現零 RPO。但是，您可以實現接近零的 RPO。為了實現接近零 RPO，您需要建立設定的備份並在新虛擬機器上還原它。
+
+
+NOTE: 若要在啟用非 HA 備份的情況下遷移到 HA，請先停用備份，然後在遷移後重新啟用它。
+
+
+
+== 建立備份並下載備份文件
+
+.步驟
+. 從 vCenter Server 開啟維護控制台。
+. 以維護使用者登入。
+. 進入 `4`選擇*支援和診斷*。
+. 進入 `3`選擇*啟用系統備份*選項。
+. 如果不是 HA，請輸入部署ONTAP工具虛擬機器的 vCenter 憑證。
+. 輸入 5 到 60 分鐘之間的備份頻率值。
+. 按 *Enter*
++
+這會建立備份並定期將備份推送到虛擬機器的資料儲存區。
+
+. 要存取備份，請導航至儲存部分並選擇虛擬機器的資料存儲
+. 選擇*文件*部分。
++
+在文件部分，您可以看到目錄。目錄名稱將是ONTAP工具 IP 位址，其中點 (.) 由下劃線替換，後綴為 _backup_。
+
+. 如需更多備份訊息，請從 *檔案* > *下載* 下載 backup_info.txt 檔案。
+
+
+
+
+== 恢復
+
+若要復原設置，請關閉現有虛擬機，然後使用初始部署中使用的 OVA 部署新虛擬機器。
+
+您需要對新虛擬機器使用相同的ONTAP工具 IP 位址，且系統配置（例如啟用的服務、節點大小和 HA 模式）必須與初始部署相同。
+
+執行下列步驟從備份檔案還原設定。
+
+. 從 vCenter Server 開啟維護控制台。
+. 以維護使用者登入。
+. 進入 `4`選擇*支援和診斷*。
+. 進入 `2`選擇*啟用遠端診斷存取*選項並為診斷存取建立新密碼。
+. 從下載的目錄中選擇任一個備份。最新的備份檔名記錄在_backup_info.txt_檔案中。
+. 執行以下命令將備份複製到新的虛擬機，並在出現提示時輸入診斷密碼。
++
+[listing]
+----
+scp <Backup_X.tar.enc> diag@<node_ip>:/home/diag/system_recovery.tar.enc
+----
++
+
+NOTE: 請勿更改命令中提到的目標路徑和檔案名稱（/home/diag/system_recovery.tar.enc）。
+
+. 複製備份檔案後，登入診斷shell並執行以下命令：
++
+[listing]
+----
+sudo perl /home/maint/scripts/post-deploy-upgrade.pl -recovery
+----
++
+日誌記錄在/var/log/post-deploy-upgrade.log檔案中。
+
+. 恢復成功後，服務和 vCenter 物件將恢復。
+

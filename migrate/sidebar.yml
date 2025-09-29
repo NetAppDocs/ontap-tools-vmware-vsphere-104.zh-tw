@@ -1,0 +1,8 @@
+---
+section: migrate
+title: 將適用ONTAP tools for VMware vSphere移轉到 10.4
+entries:
+- title: 遷移到ONTAP tools for VMware vSphere
+  url: "/migrate/migrate-to-latest-ontaptools.html"
+- title: 遷移 VASA 提供者並更新 SRA
+  url: "/migrate/sra-vasa-migration.html"

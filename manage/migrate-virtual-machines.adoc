@@ -1,0 +1,63 @@
+---
+permalink: manage/migrate-virtual-machines.html 
+sidebar: sidebar 
+keywords:  
+summary: 在遷移資料中心中現有的虛擬機器時，您應該注意一些注意事項。 
+---
+= 遷移或複製虛擬機器的注意事項
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在遷移資料中心中的現有虛擬機器時，您應該注意一些注意事項。
+
+
+
+== 遷移受保護的虛擬機
+
+您可以將受保護的虛擬機器遷移到：
+
+* 不同 ESXi 主機中的相同vVols資料存儲
+* 同一 ESXi 主機中存在不同的相容vVols資料存儲
+* 不同 ESXi 主機中不同的相容vVols資料存儲
+
+
+如果虛擬機器遷移到不同的FlexVol volume，則對應的元資料檔案也會使用虛擬機器資訊進行更新。如果虛擬機器遷移到不同的 ESXi 主機但相同的存儲，則底層FlexVol volume元資料檔案將不會被修改。
+
+
+
+== 複製受保護的虛擬機
+
+您可以將受保護的虛擬機器複製到以下內容：
+
+* 使用複製組的相同FlexVol volume的相同容器
++
+相同的FlexVol磁碟區的元資料檔案將會使用複製的虛擬機器詳細資料進行更新。
+
+* 使用複製組的不同FlexVol volume的相同容器
++
+放置複製虛擬機器的FlexVol volume，元資料檔案會使用克隆虛擬機器的詳細資訊進行更新。
+
+* 不同的容器或vVols資料存儲
++
+放置克隆虛擬機器的FlexVol volume，元資料檔案取得更新的虛擬機器詳細資訊。
+
+
+
+VMware 目前不支援將虛擬機器複製到 VM 範本。
+
+支援受保護虛擬機器的克隆。
+
+參考 https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/7-0/vsphere-virtual-machine-administration-guide-7-0/deploying-virtual-machinesvm-admin/clone-an-existing-virtual-machine-h5vm-admin.html["建立用於克隆的虛擬機"]了解更多詳情。
+
+
+
+== 虛擬機器快照
+
+目前僅支援沒有記憶體的虛擬機器快照。如果虛擬機器有帶記憶體的Snapshot，那麼該虛擬機器就不會考慮保護。
+
+您也無法保護具有記憶體快照的未受保護的虛擬機器。對於此版本，您需要在啟用虛擬機器保護之前刪除記憶體快照。
+
+對於具有ASA r2 儲存類型的 Windows VM，當您拍攝虛擬機器快照時，它將是唯讀快照。當虛擬機器需要開機時，VASA 提供者會使用唯讀快照建立一個 LUN，然後啟用它以實作 IOPS。在關機請求期間，VASA Provider 會刪除已建立的 LUN，然後停用 IOPS。

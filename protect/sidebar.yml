@@ -1,0 +1,36 @@
+---
+section: protect
+title: 保護資料儲存和虛擬機
+entries:
+- title: 使用主機群集保護進行保護
+  url: "/configure/protect-cluster.html"
+- title: 使用 SRA 保護進行保護
+  entries:
+  - title: 配置 SRA 以保護資料存儲
+    url: "/protect/enable-storage-replication-adapter.html"
+  - title: 為 SAN 和 NAS 環境配置 SRA
+    url: "/protect/configure-storage-replication-adapter-for-san-environment.html"
+  - title: 為高度擴展的環境配置 SRA
+    url: "/protect/configure-storage-replication-adapter-for-highly-scaled-environment.html"
+  - title: 在 VMware Live Site Recovery 設備上設定 SRA
+    url: "/protect/configure-on-srm-appliance.html"
+  - title: 更新 SRA 憑證
+    url: "/protect/update-credentials.html"
+  - title: 配置受保護站點和復原站點
+    url: "/protect/configure-protection-groups.html"
+  - title: 配置受保護和復原站台資源
+    entries:
+    - title: 設定網路映射
+      url: "/protect/map-network.html"
+    - title: 設定資料夾映射
+      url: "/protect/map-folder.html"
+    - title: 配置資源映射
+      url: "/protect/map-resource.html"
+    - title: 配置佔位資料存儲
+      url: "/protect/configure-placeholder-datastores.html"
+    - title: 使用陣列管理器配置 SRA
+      url: "/protect/configure-array-manager.html"
+  - title: 驗證複製的儲存系統
+    url: "/protect/verify-the-replicated-storage-environment.html"
+  - title: 扇出保護
+    url: "/protect/fan-out-protection.html"

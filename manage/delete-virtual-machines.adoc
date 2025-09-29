@@ -1,0 +1,24 @@
+---
+permalink: manage/delete-virtual-machines.html 
+sidebar: sidebar 
+keywords:  
+summary: 使用本節中的步驟執行 VASA 清理。 
+---
+= VASA清理
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+使用本節中的步驟執行 VASA 清理。
+
+
+NOTE: 建議您在執行 VASA 清理之前刪除所有vVols資料儲存。
+
+.步驟
+. 進入 \ https://OTV_IP:8143/Register.html取消註冊插件
+. 驗證該插件在 vCenter Server 上不再可用。
+. 關閉ONTAP tools for VMware vSphere。
+. 刪除ONTAP tools for VMware vSphere。
+

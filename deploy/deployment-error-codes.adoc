@@ -1,0 +1,132 @@
+---
+permalink: deploy/deployment-error-codes.html 
+sidebar: sidebar 
+keywords: upgrade 
+summary: 本頁概述了ONTAP tools for VMware vSphere的部署、重新啟動和復原作業的錯誤代碼。 
+---
+= 部署錯誤程式碼
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可能會在ONTAP tools for VMware vSphere部署、重新啟動和復原作業期間遇到錯誤代碼。錯誤代碼長度為五位數字，其中前兩位數字代表遇到問題的腳本，後三位數字代表該腳本內的特定工作流程。
+
+所有錯誤日誌都記錄在 ansible-perl-errors.log 檔案中，以便於輕鬆追蹤和解決問題。此日誌檔案包含錯誤代碼和失敗的 Ansible 任務。
+
+
+NOTE: 本頁提供的錯誤代碼僅供參考。如果錯誤仍然存在或沒有提到解決方案，請聯絡支援團隊。
+
+下表列出了錯誤代碼和對應的檔案名稱。
+
+|===
+
+
+| *錯誤代碼* | *腳本名稱* 
+
+
+| 00 | firstboot-network-config.pl，模式部署 
+
+
+| 01 | firstboot-network-config.pl，模式升級 
+
+
+| 02 | firstboot-輸入驗證.pl 
+
+
+| 03 | Firstboot-deploy-otv-ng.pl，部署，HA 
+
+
+| 04 | firstboot-deploy-otv-ng.pl，部署，非 HA 
+
+
+| 05 | firstboot-deploy-otv-ng.pl，重啟 
+
+
+| 06 | firstboot-deploy-otv-ng.pl，升級，HA 
+
+
+| 07 | firstboot-deploy-otv-ng.pl，升級，非 HA 
+
+
+| 08 | firstboot-otv-recovery.pl 
+
+
+| 09 | 部署後升級.pl 
+|===
+錯誤代碼的最後三位數字表示腳本中特定的工作流程錯誤：
+
+|===
+
+
+| *部署錯誤代碼* | *工作流程* | *解決* 
+
+
+| 049 | 對於網路和驗證 perl 腳本也將很快分配它們 | - 
+
+
+| 050 | Ssh 金鑰產生失敗 | 重新啟動主虛擬機器 (VM)。 
+
+
+| 053 | 安裝 RKE2 失敗 | 執行以下命令並重新啟動主 VM 或重新部署：sudo rke2-killall.sh（所有 VM）sudo rke2-uninstall.sh（所有 VM）。 
+
+
+| 054 | 設定 kubeconfig 失敗 | 重新部署 
+
+
+| 055 | 部署註冊表失敗 | 如果登錄 pod 存在，請等待 pod 準備就緒，然後重新啟動主 VM 或重新部署。 
+
+
+| 059 | KubeVip部署失敗 | 確保部署期間提供的 Kubernetes 控制平面的虛擬 IP 位址和ONTAP工具 IP 位址屬於相同 VLAN 並且是空閒 IP 位址。如果前面所有點都正確，請重新啟動。否則，重新部署。 
+
+
+| 060 | 操作員部署失敗 | 重啟 
+
+
+| 061 | 服務部署失敗 | 在 ntv-system 命名空間中執行基本的 Kubernetes 偵錯，例如取得 pod、取得 rs、取得 svc 等，以取得更多詳細資訊和錯誤日誌（位於 /var/log/ansible-perl-errors.log 和 /var/log/ansible-run.log）並重新部署。 
+
+
+| 062 | ONTAP工具服務部署失敗 | 請參閱 /var/log/ansible-perl-errors.log 中的錯誤日誌以了解更多詳細資訊並重新部署。 
+
+
+| 065 | Swagger 頁面 URL 無法存取 | 重新部署 
+
+
+| 066 | 網關憑證的部署後步驟失敗 | 執行以下操作以復原/完成升級：* 啟用診斷外殼。  * 執行「sudo perl /home/maint/scripts/post-deploy-upgrade.pl --postDeploy」指令。  * 檢查 /var/log/post-deploy-upgrade.log 上的日誌。 
+
+
+| 088 | 配置 journald 的日誌輪替失敗 | 檢查虛擬機器網路設定是否與託管虛擬機器的主機相容。您可以嘗試遷移到另一台主機並重新啟動虛擬機器。 
+
+
+| 089 | 更改摘要日誌輪換設定檔的所有權失敗 | 重新啟動主虛擬機器。 
+
+
+| 096 | 安裝動態儲存供應器 | - 
+
+
+| 108 | 種子腳本失敗 | - 
+|===
+|===
+
+
+| *重啟錯誤代碼* | *工作流程* | *解決* 
+
+
+| 067 | 等待 rke2-server 超時。 | - 
+
+
+| 101 | 無法重置維護/控制台使用者密碼。 | - 
+
+
+| 102 | 重置維護/控制台使用者密碼時無法刪除密碼檔案。 | - 
+
+
+| 103 | 無法更新保險庫中的新維護/控制台使用者密碼。 | - 
+
+
+| 088 | 配置 journald 的日誌輪替失敗。 | 檢查虛擬機器網路設定是否與託管虛擬機器的主機相容。您可以嘗試遷移到另一台主機並重新啟動虛擬機器。 
+
+
+| 089 | 變更摘要日誌輪替設定檔的所有權失敗。 | 重新啟動虛擬機器。 
+|===

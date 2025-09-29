@@ -1,0 +1,30 @@
+---
+permalink: protect/verify-the-replicated-storage-environment.html 
+sidebar: sidebar 
+keywords:  
+summary: '配置儲存複製適配器 (SRA) 後，您應該驗證受保護網站和復原網站是否成功配對。受保護站點和復原站點都應該能夠發現複製的儲存系統。' 
+---
+= 驗證複製的儲存系統
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+配置儲存複製適配器 (SRA) 後，您應該驗證受保護網站和復原網站是否成功配對。受保護站點和復原站點都應該能夠發現複製的儲存系統。
+
+.開始之前
+* 您應該已經配置了您的儲存系統。
+* 您應該使用 VMware Live Site Recovery 陣列管理器將受保護網站和復原網站配對。
+* 在執行測試故障轉移操作和 SRA 故障轉移操作之前，您應該已啟用FlexClone許可證和SnapMirror許可證。
+* 來源網站和目標網站上應該具有相同的SnapMirror策略和計畫。
+
+
+.步驟
+. 登入您的 vCenter Server。
+. 導航至*站點復原*>*基於陣列的複製*。
+. 選擇所需的陣列對並驗證相應的詳細資訊。
++
+應在受保護網站和復原站點發現儲存系統，其狀態為「已啟用」。
+
+

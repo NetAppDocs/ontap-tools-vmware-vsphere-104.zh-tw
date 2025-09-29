@@ -1,0 +1,25 @@
+---
+permalink: manage/resize-datastores.html 
+sidebar: sidebar 
+keywords:  
+summary: 調整資料儲存的大小可以增加虛擬機器檔案的儲存空間。您可以根據基礎架構需求的變化來變更資料儲存的大小。 
+---
+= 調整 NFS 和 VMFS 資料儲存的大小
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+調整資料儲存的大小可以增加虛擬機器檔案的儲存空間。您可以根據基礎架構需求的變化來變更資料儲存的大小。
+
+*關於此任務*
+
+您只能增加 NFS 和 VMFS 資料儲存的大小。作為 NFS 和 VMFS 資料儲存的一部分的FlexVol volume不能縮小到現有大小以下，但最多可成長 120%。
+
+.步驟
+. 從 vSphere Client 主頁中，選擇「主機和叢集」。
+. 在導覽窗格中，選擇包含資料儲存區的資料中心。
+. 右鍵點選 NFS 或 VMFS 資料存儲，然後選擇 * NetApp ONTAP工具* > *調整資料儲存大小*。
+. 在「調整大小」對話方塊中，指定資料儲存的新大小並選擇「確定」。
+

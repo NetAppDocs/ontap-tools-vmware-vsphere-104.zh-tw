@@ -1,0 +1,29 @@
+---
+permalink: manage/remove-storage-from-a-vvols-datastore.html 
+sidebar: sidebar 
+keywords: Remove vVol datastore 
+summary: 當選定的資料儲存體上沒有vVols時，刪除資料儲存操作會刪除該資料儲存。 
+---
+= 縮小vVols資料存儲
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+當選定的資料儲存體上沒有vVols時，刪除資料儲存操作會刪除該資料儲存。
+
+
+NOTE: 基於ASA r2 系統的vVols資料儲存不支援縮小vVols資料儲存操作。
+
+.步驟
+. 從 vSphere Client 主頁中，選擇「主機和叢集」。
+. 在導覽窗格中，選擇包含資料儲存區的資料中心。
+. 右鍵點選 vVol 資料儲存並選擇 * NetApp ONTAP工具* > *從資料儲存中刪除儲存*。
+. 選擇沒有vVols的磁碟區並選擇 *刪除*。
++
+
+NOTE: 選擇vVols所在磁碟區的選項已停用。
+
+. 在*刪除儲存*彈出視窗中，選取*從ONTAP叢集中刪除卷*複選框以從資料儲存和ONTAP儲存中刪除卷，然後選擇*刪除*。
+

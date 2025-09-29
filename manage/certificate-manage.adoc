@@ -1,0 +1,79 @@
+---
+permalink: manage/certificate-manage.html 
+sidebar: sidebar 
+keywords:  
+summary: ONTAP tools for VMware vSphere的單一執行個體可以管理多個 vCenter Server 執行個體。ONTAP tools for VMware vSphere是使用 VASA 提供者的自簽章憑證部署的。這樣，只能為vVols資料儲存管理一個 vCenter Server 執行個體。 
+---
+= 管理證書
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+部署期間預設為ONTAP工具和 VASA Provider 產生自簽章憑證。使用ONTAP工具管理器介面，您可以更新憑證或將其升級為自訂 CA。在多重 vCenter 部署中，自訂 CA 憑證是必要的。
+
+.開始之前
+* 頒發憑證的網域名稱應該會對應到虛擬IP位址。
+* 對網域名稱執行 nslookup 檢查，以檢查網域是否解析為預期的 IP 位址。
+* 應使用網域名稱和ONTAP工具 IP 位址建立憑證。
+
+
+
+NOTE: ONTAP工具 IP 位址應對應到完全限定網域名稱 (FQDN)。憑證應包含對應到主題或主題備用名稱中的ONTAP工具 IP 位址的相同 FQDN。
+
+
+NOTE: 您不能從 CA 簽章憑證切換到自簽章憑證。
+
+[role="tabbed-block"]
+====
+.升級ONTAP工具證書
+--
+ONTAP工具標籤顯示憑證類型（自簽名/CA 簽章）和網域等詳細資訊。部署時預設產生自簽名憑證。您可以更新憑證或將憑證升級到CA。
+
+.步驟
+. 從 Web 瀏覽器啟動ONTAP工具管理器： `\https://<ONTAPtoolsIP>:8443/virtualization/ui/`
+. 使用您在部署期間提供的適用於ONTAP tools for VMware vSphere管理員憑證登入。
+. 選擇 *憑證* > * ONTAP工具* > *續約* 來續約憑證。
++
+如果證書已過期或即將過期，您可以續訂證書。當憑證類型為 CA 簽署時，可以使用續訂選項。在彈出視窗中，提供伺服器憑證、私鑰、根 CA 和中間憑證詳細資訊。
+
++
+
+NOTE: 系統將處於離線狀態，直到憑證更新為止，並且您將退出ONTAP工具管理器介面。
+
+. 若要將自簽名證書升級為自訂 CA 證書，請選擇 *證書* ​​> * ONTAP工具* > *升級至 CA* 選項。
++
+.. 在彈出的視窗中，上傳伺服器憑證、伺服器憑證私鑰、根CA憑證、中間憑證檔案。
+.. 輸入您產生此憑證的網域並升級憑證。
++
+
+NOTE: 系統將處於離線狀態，直到升級完成，並且您將退出ONTAP工具管理器介面。
+
+
+
+
+
+--
+.升級 VASA 提供者證書
+--
+ONTAP tools for VMware vSphere是使用 VASA 提供者的自簽章憑證部署的。這樣，只能為vVols資料儲存管理一個 vCenter Server 執行個體。當您管理多個 vCenter Server 執行個體並希望在其上啟用vVols功能時，您需要將自簽章憑證變更為自訂 CA 憑證。
+
+.步驟
+. 從 Web 瀏覽器啟動ONTAP工具管理器： `\https://<ONTAPtoolsIP>:8443/virtualization/ui/`
+. 使用您在部署期間提供的適用於ONTAP tools for VMware vSphere管理員憑證登入。
+. 選擇 *憑證* > *VASA 提供者* 或 * ONTAP工具* > *續約* 來續約憑證。
+. 選擇 *憑證* > *VASA 提供者* 或 * ONTAP工具* > *升級至 CA* 將自簽章憑證升級為自訂 CA 憑證。
++
+.. 在彈出的視窗中，上傳伺服器憑證、伺服器憑證私鑰、根CA憑證、中間憑證檔案。
+.. 輸入您產生此憑證的網域並升級憑證。
++
+
+NOTE: 系統將處於離線狀態，直到升級完成，並且您將退出ONTAP工具管理器介面。
+
+
+
+
+
+--
+====

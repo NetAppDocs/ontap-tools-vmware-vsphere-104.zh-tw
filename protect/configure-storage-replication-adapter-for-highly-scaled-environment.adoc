@@ -1,0 +1,68 @@
+---
+permalink: protect/configure-storage-replication-adapter-for-highly-scaled-environment.html 
+sidebar: sidebar 
+keywords:  
+summary: '您應該根據儲存複製適配器 (SRA) 的建議設定配置儲存超時間隔，以便在高度擴展的環境中實現最佳效能。' 
+---
+= 為高度擴展的環境配置 SRA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您應該根據儲存複製適配器 (SRA) 的建議設定配置儲存超時間隔，以便在高度擴展的環境中實現最佳效能。
+
+
+
+== 儲存提供者設定
+
+您應該在 VMware Live Site Recovery 上為擴充環境設定以下逾時值：
+
+|===
+
+
+| *進階設定* | *超時值* 
+
+
+ a| 
+`StorageProvider.resignatureTimeout`
+ a| 
+將設定值從 900 秒增加到 12000 秒。
+
+
+
+ a| 
+`storageProvider.hostRescanDelaySec`
+ a| 
+60
+
+
+
+ a| 
+`storageProvider.hostRescanRepeatCnt`
+ a| 
+20
+
+
+
+ a| 
+`storageProvider.hostRescanTimeoutSec`
+ a| 
+設定一個高值（例如：99999）
+
+|===
+您還應該啟用 `StorageProvider.autoResignatureMode`選項。
+
+參考 https://techdocs.broadcom.com/us/en/vmware-cis/live-recovery/live-site-recovery/9-0/how-do-i-protect-my-environment/advanced-srm-configuration/reconfigure-srm-settings/change-storage-provider-settings.html["更改儲存提供者設定"]有關修改儲存提供者設定的詳細資訊。
+
+
+
+== 儲存設定
+
+當你超時時，增加 `storage.commandTimeout`和 `storage.maxConcurrentCommandCnt`達到更高的價值。
+
+
+NOTE: 指定的超時間隔是最大值。您無需等待達到最大超時時間。大多數命令在設定的最大超時間隔內完成。
+
+參考 https://techdocs.broadcom.com/us/en/vmware-cis/live-recovery/live-site-recovery/9-0/how-do-i-protect-my-environment/advanced-srm-configuration/reconfigure-srm-settings/change-storage-settings.html["更改儲存設定"]用於修改 SAN 提供者設定。

@@ -1,0 +1,42 @@
+---
+permalink: manage/collect-the-log-files.html 
+sidebar: sidebar 
+keywords:  
+summary: '您可以從適用ONTAP tools for VMware vSphere圖形使用者介面 (GUI) 中提供的選項收集適用於ONTAP tools for VMware vSphere的日誌檔案。技術支援可能會要求您收集日誌檔案以協助解決問題。' 
+---
+= 收集日誌文件
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以從ONTAP工具管理器使用者介面中提供的選項收集ONTAP tools for VMware vSphere的日誌檔案。技術支援可能會要求您收集日誌檔案以協助解決問題。
+
+
+NOTE: 從ONTAP工具管理器產生的日誌包含所有 vCenter Server 執行個體的所有日誌。從 vCenter 用戶端使用者介面產生的日誌適用於所選的 vCenter Server。
+
+.步驟
+. 從 Web 瀏覽器啟動ONTAP工具管理器： `\https://<ONTAPtoolsIP>:8443/virtualization/ui/`
+. 使用您在部署期間提供的適用於ONTAP tools for VMware vSphere管理員憑證登入。
+. 從側邊欄中選擇*Log Bundles*。
++
+此操作可能需要幾分鐘。
+
+. 選擇*生成*來產生日誌檔案。
+. 輸入日誌包的標籤並選擇*產生*。
++
+下載 tar.gz 檔案並將其傳送給技術支援。
+
+
+
+請依照下列步驟使用 vCenter 用戶端使用者介面產生日誌包：
+
+.步驟
+. 登入 vSphere 客戶端。
+. 從 vSphere Client 主頁，前往 *支援* > *日誌包* > *產生*。
+. 提供日誌包標籤並產生日誌包。文件生成後，您可以看到下載選項。下載可能需要一些時間。
+
+
+
+NOTE: 產生的日誌包將替換過去 3 天或 72 小時內產生的日誌包。

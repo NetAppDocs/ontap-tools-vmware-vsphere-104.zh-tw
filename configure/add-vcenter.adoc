@@ -1,0 +1,36 @@
+---
+permalink: configure/add-vcenter.html 
+sidebar: sidebar 
+keywords:  
+summary: 將 vCenter Server 執行個體新增至ONTAP tools for VMware vSphere中，以設定、管理和保護 vCenter Server 環境中的虛擬資料儲存區。 
+---
+= 新增 vCenter Server 執行個體
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+將 vCenter Server 執行個體新增至ONTAP tools for VMware vSphere中，以設定、管理和保護 vCenter Server 環境中的虛擬資料儲存區。新增多個 vCenter Server 執行個體時，需要自訂 CA 憑證才能在ONTAP工具和每個 vCenter Server 之間進行安全通訊。
+
+*關於此任務*
+
+透過與 vCenter 集成， ONTAP工具可讓您直接從 vSphere 用戶端執行配置、快照和資料保護等儲存任務，無需切換到單獨的儲存管理控制台。
+
+.步驟
+. 開啟 Web 瀏覽器並導航至以下 URL： `\https://<ONTAPtoolsIP>:8443/virtualization/ui/`
+. 使用您在部署期間提供的適用於ONTAP tools for VMware vSphere管理員憑證登入。
+. 選擇 *vCenters* > *Add* 來加入 vCenter Server 執行個體。提供您的 vCenter IP 位址或主機名稱、使用者名稱、密碼和連接埠詳細資訊。
++
+
+NOTE: 您不需要管理員帳戶即可將 vCenter 實例新增至ONTAP工具。您可以建立沒有管理員帳戶且權限有限的自訂角色。參考link:../concepts/rbac-vcenter-use.html["將 vCenter Server RBAC 與ONTAP tools for VMware vSphere結合使用"]了解詳情。
+
+
+
+將 vCenter Server 執行個體新增至ONTAP工具會自動觸發下列操作：
+
+* vCenter 用戶端插件註冊為遠端插件。
+* 插件和 API 的自訂權限應用於 vCenter Server 執行個體。
+* 建立自訂角色來管理使用者。
+* 該插件作為快捷方式出現在 vSphere 使用者介面上。
+

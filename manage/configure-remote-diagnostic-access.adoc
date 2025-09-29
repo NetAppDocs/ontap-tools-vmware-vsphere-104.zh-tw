@@ -1,0 +1,42 @@
+---
+permalink: manage/configure-remote-diagnostic-access.html 
+sidebar: sidebar 
+keywords:  
+summary: 您可以ONTAP tools for VMware vSphere，以便為 diag 使用者啟用 SSH 存取權。 
+---
+= 配置遠端診斷存取
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以ONTAP tools for VMware vSphere，以便為 diag 使用者啟用 SSH 存取權。
+
+.開始之前
+應該為您的 vCenter Server 執行個體啟用 VASA 提供者擴充。
+
+*關於此任務*
+
+使用 SSH 存取 diag 使用者帳戶有以下限制：
+
+* 每次啟動 SSH 時只允許您使用一個登入帳號。
+* 當發生以下情況之一時，對 diag 使用者帳戶的 SSH 存取將被停用：
++
+** 時間已到。
++
+登入會話僅在第二天午夜之前有效。
+
+** 您再次使用 SSH 以 diag 使用者身分登入。
+
+
+
+
+.步驟
+. 從 vCenter Server 開啟 VASA Provider 控制台。
+. 以維護使用者登入。
+. 進入 `4`選擇支持和診斷。
+. 進入 `2`選擇啟用遠端診斷存取。
+. 進入 `y`在確認對話方塊中啟用遠端診斷存取。
+. 輸入遠端診斷存取的密碼。
+

@@ -1,0 +1,100 @@
+---
+section: manage
+title: 管理ONTAP tools for VMware vSphere
+entries:
+- title: ONTAP tools for VMware vSphere資訊板概述
+  url: "/configure/dashboard-overview.html"
+- title: ONTAP工具管理器使用者介面
+  url: "/configure/manager-user-interface.html"
+- title: 了解 igroup 和匯出政策
+  url: "/manage/igroup-workflow.html"
+- title: 了解ONTAP工具管理的 igroup
+  url: "/manage/nested-igroups.html"
+- title: ONTAP tools for VMware vSphere
+  url: "/manage/enable-services.html"
+- title: 變更ONTAP tools for VMware vSphere
+  url: "/manage/edit-appliance-settings.html"
+- title: 管理資料儲存區
+  entries:
+  - title: 掛載 NFS 和 VMFS 資料存儲
+    url: "/manage/mount-datastores-on-host.html"
+  - title: 卸載 NFS 和 VMFS 資料存儲
+    url: "/manage/unmount-datastores-on-host.html"
+  - title: 掛載vVols資料存儲
+    url: "/manage/mount-a-vvols-datastore.html"
+  - title: 調整 NFS 和 VMFS 資料儲存的大小
+    url: "/manage/resize-datastores.html"
+  - title: 擴展 vVol 數據存儲
+    url: "/manage/expand-storage-of-vvol-datastore.html"
+  - title: 縮小vVols資料存儲
+    url: "/manage/remove-storage-from-a-vvols-datastore.html"
+  - title: 刪除資料存儲
+    url: "/manage/delete-ds.html"
+  - title: 資料儲存庫的ONTAP儲存視圖
+    url: "/manage/storage-view-datastore.html"
+  - title: 虛擬機器儲存視圖
+    url: "/manage/virtual-machine-storage-view-datastore.html"
+- title: 管理儲存閾值
+  url: "/manage/manage-storage-threshold.html"
+- title: 管理儲存後端
+  url: "/manage/storage-backend.html"
+- title: 管理 vCenter Server 執行個體
+  url: "/manage/manage-vcenter.html"
+- title: 管理證書
+  url: "/manage/certificate-manage.html"
+- title: 存取ONTAP tools for VMware vSphere
+  entries:
+  - title: ONTAP tools for VMware vSphere概述
+    url: "/manage/maintenance-console.html"
+  - title: 配置遠端診斷存取
+    url: "/manage/configure-remote-diagnostic-access.html"
+  - title: 在其他節點上啟動SSH
+    url: "/manage/start-the-ssh-on-other-nodes.html"
+  - title: 更新 vCenter 伺服器和ONTAP憑證
+    url: "/manage/update-vcenter-credentials.html"
+- title: ONTAP工具報告
+  url: "/manage/reports.html"
+- title: 收集日誌文件
+  url: "/manage/collect-the-log-files.html"
+- title: 管理虛擬機
+  entries:
+  - title: 遷移或複製虛擬機器的注意事項
+    url: "/manage/migrate-virtual-machines.html"
+  - title: 將具有 NFS 和 VMFS 資料儲存區的虛擬機器遷移到vVols資料儲存區
+    url: "/manage/migrate-standard-virtual-machines-to-vvols-datastores.html"
+  - title: VASA清理
+    url: "/manage/delete-virtual-machines.html"
+  - title: 從虛擬機器附加或分離資料磁碟
+    url: "/manage/attach-detach-disk.html"
+- title: 發現儲存系統和主機
+  url: "/configure/discover-storage-systems-and-hosts.html"
+- title: 修改 ESXi 主機設置
+  url: "/manage/edit-esxi-host-settings.html"
+- title: 管理密碼
+  entries:
+  - title: 更改ONTAP工具管理器密碼
+    url: "/manage/change-manager-password.html"
+  - title: 重設ONTAP工具管理器密碼
+    url: "/manage/reset-manager-password.html"
+  - title: 重置應用程式用戶密碼
+    url: "/manage/reset-app-password.html"
+  - title: 重設維護控制台使用者密碼
+    url: "/manage/reset-maint-password.html"
+- title: 管理主機叢集保護
+  entries:
+  - title: 修改主機群集保護
+    url: "/manage/edit-hostcluster-protection.html"
+  - title: 刪除主機群集保護
+    url: "/manage/delete-hostcluster-protection.html"
+- title: 禁用AutoSupport
+  url: "/manage/disable-autosupport.html"
+- title: 更新AutoSupport代理 URL
+  url: "/manage/update-proxyurl.html"
+- title: 新增 NTP 伺服器
+  url: "/manage/add-ntpserver.html"
+- title: 建立備份並恢復ONTAP工具設置
+  url: "/manage/enable-backup.html"
+- title: 卸載ONTAP tools for VMware vSphere
+  url: "/manage/uninstall-deployment.html"
+- title: 刪除FlexVol卷
+  url: "/manage/delete-deployment.html"

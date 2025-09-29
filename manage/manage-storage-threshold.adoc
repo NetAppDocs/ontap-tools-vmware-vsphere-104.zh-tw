@@ -1,0 +1,21 @@
+---
+permalink: manage/manage-storage-threshold.html 
+sidebar: sidebar 
+keywords:  
+summary: 您可以設定閾值，當磁碟區和聚合容量達到特定水準時，在 vCenter Server 中接收通知。 
+---
+= 管理儲存閾值
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以設定閾值，當磁碟區和聚合容量達到特定水準時，在 vCenter Server 中接收通知。
+
+.步驟：
+. 登入 vSphere 客戶端。
+. 在捷徑頁面中，選擇插件部分下的* NetApp ONTAP工具*。
+. 在ONTAP工具的左側窗格中，導覽至 *設定* > *閾值設定* > *編輯*。
+. 在「*編輯閾值*」視窗中，在「*接近滿*」和「*滿*」欄位中提供所需的值，然後選擇「*儲存*」。您可以將數字重設為建議值，即 80 表示接近滿，90 表示滿。
+

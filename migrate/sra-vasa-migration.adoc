@@ -1,0 +1,176 @@
+---
+permalink: migrate/sra-vasa-migration.html 
+sidebar: sidebar 
+keywords: migrate 
+summary: 遷移儲存資料時，使用 REST API 手動加入儲存後端。遷移 VASA Provider 資料時，資料會從現有的 Derby 資料庫匯出並匯入 MongoDB 資料庫。 
+---
+= 遷移 VASA 提供者並更新 SRA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+
+
+== 遷移 VASA 提供者的步驟
+
+. 若要在現有的適用ONTAP tools for VMware vSphere上啟用 Derby PORT 1527，請啟用 root 使用者並透過 SSH 登入 CLI。然後，執行以下命令：
++
+[listing]
+----
+iptables -I INPUT 1 -p tcp --dport 1527 -j ACCEPT
+----
+. ONTAP tools for VMware vSphere的 OVA。
+. 新增要移轉到ONTAP tools for VMware vSphere的 vCenter Server 執行個體。請參閱link:../configure/add-vcenter.html["新增 vCenter Server 執行個體"]了解更多。
+. 透過 vCenter 伺服器 API 在本地為ONTAP工具插件裝載儲存後端。
+. 從 Swagger 或 Postman 發出以下 API 進行遷移。
++
+curl -X POST  `\https://xx.xx.xx.xx:8443/virtualization/api/v1/vcenters/{vcguid}/migration-jobs``
+
++
+您可以透過此 URL 存取 Swagger：  `\https://$FQDN_IP_PORT/', for example: `\https://10.67.25.33:8443` 。
+
++
+[]
+====
+HTTP 方法和端點
+
+此 REST API 呼叫使用下列方法和端點。
+
+|===
+
+
+| HTTP 方法 | *小路* 
+
+
+| 郵政 | /api/v1 
+|===
+*加工類型*
+
+非同步
+
+*Curl 範例*
+
+curl -X POST'https://<OTV-NG-IP>:8443/virtualization/api/v1/vcenters/<vcguid>/migration-jobs'[] \ --header 'x-auth：<auth_token>' \ --header 'Content-Type：application/json' \ --data '{“otv_ip”：“xx.xx.xx.xx”，“vasa_provider_credentials”：{“username”：“xxxxx.”，“vasa_provider_credentials”：{“用戶名”：“xxxxx”，“*Kwords”，”？
+
+其他版本遷移的請求主體：
+
+{ “otv_ip”：“xx.xx.xx.xx”， “vasa_provider_credentials”：{ “用戶名”：“xxxxx”，“密碼”：“*******” } }
+
+JSON 輸出範例
+
+傳回一個作業對象。您應該保存作業標識符以便在下一步中使用它。
+
+{ “id”：123，“migration_id”：“d50073ce-35b4-4c51-9d2e-4ce66f802c35”，“status”：“正在運行”}
+
+====
+. 在 Swagger 中使用以下 URI 檢查狀態：
++
+[listing]
+----
+curl `\https://xx.xx.xx.xxx:8443/virtualization/api/jobmanager/v2/jobs/<JobID>?includeSubJobsAndTasks=true`
+----
++
+完成工作後，查看遷移報告。該報告包含在工作數據中，可以從工作回應中存取。
+
+. 將ONTAP tools for VMware vSphere新增至 vCenter Server 並link:../configure/registration-process.html["註冊 VASA 提供程序"]使用適用於ONTAP tools for VMware vSphere。
+. link:../manage/enable-services.html["啟用 VASA 提供程序"]ONTAP tools for VMware vSphere上的服務。
+. 從維護控制台停止ONTAP tools for VMware vSphere。
++
+請勿刪除 VASA 提供者。
+
++
+舊 VASA 提供者停止後，vCenter Server 將故障轉移到ONTAP tools for VMware vSphere。所有資料儲存庫和虛擬機器均可訪問，並由適用於ONTAP tools for VMware vSphere提供服務。
+
+. 只有在觸發資料儲存發現作業後，從ONTAP tools for VMware vSphere遷移的 NFS 和 VMFS 資料儲存才會顯示在ONTAP tools for VMware vSphere中，這可能需要長達 30 分鐘才能完成。驗證資料儲存區是否在 VMware vSphere 外掛程式使用者介面頁面的ONTAP工具概覽頁面上可見。
+. 使用 Swagger 或 Postman 中的以下 API 執行補丁遷移：
++
+[]
+====
+HTTP 方法和端點
+
+此 REST API 呼叫使用下列方法和端點。
+
+|===
+
+
+| HTTP 方法 | *小路* 
+
+
+| 修補 | /api/v1 
+|===
+*加工類型*
+
+非同步
+
+*Curl 範例*
+
+curl -X 補丁 `\https://xx.xx.xx.xx:8443/virtualization/api/v1/vcenters/56d373bd-4163-44f9-a872-9adabb008ca9/migration-jobs/84dr73bd-9173-65r7-w345-8ufdbb887d43`
+
+JSON 輸出範例
+
+傳回一個作業對象。您應該保存作業標識符以便在下一步中使用它。
+
+{ “id”：123，“migration_id”：“d50073ce-35b4-4c51-9d2e-4ce66f802c35”，“status”：“正在運行”}
+
+修補操作請求體為空。
+
+
+NOTE: UUID 是回應遷移後 API 回傳的遷移 UUID。
+
+執行補丁遷移API後，所有虛擬機器都符合儲存策略。
+
+====
+
+
+.下一步
+完成遷移並將ONTAP Tools 10.4 註冊到 vCenter Server 後，請依照下列步驟操作：
+
+* 等待*發現*完成，憑證將在所有主機上自動刷新。
+* 啟動資料儲存區和虛擬機器操作之前，請留出足夠的時間。所需的等待時間會因配置中的主機、資料儲存區和虛擬機器的數量而異。等待失敗可能會導致間歇性操作失敗。
+
+
+升級後，如果虛擬機器的合規性狀態已過時，請使用以下步驟重新套用儲存策略：
+
+. 導航至資料儲存並選擇*摘要*>*虛擬機器儲存策略*。
++
+*虛擬機器儲存策略合規性*下的合規性狀態顯示為*過時*。
+
+. 選擇儲存虛擬機策​​略和對應的虛擬機
+. 選擇“*應用*”
++
+*VM 儲存策略合規性* 下的合規性狀態現在顯示為合規性。
+
+
+
+.相關資訊
+* link:../concepts/rbac-learn-about.html["了解適用於ONTAP tools for VMware vSphere"]
+* link:../upgrade/upgrade-ontap-tools.html["將適用於ONTAP tools for VMware vSphere升級至 10.4"]
+
+
+
+
+== 更新儲存複製適配器（SRA）的步驟
+
+.開始之前
+在復原計畫中，受保護站點是指虛擬機器目前運作的位置，而復原站點是指虛擬機器將被復原的位置。 SRM介面顯示復原計畫的狀態，其中包含受保護網站和復原網站的詳細資訊。在復原計畫中，「*CleanupP*」和「*Reprotect*」按鈕處於停用狀態，而「TEST」和「RUN」按鈕則保持啟用狀態。這表示該站點已準備好進行資料恢復。在遷移 SRA 之前，請先驗證一個網站處於受保護狀態，另一個網站處於復原狀態。
+
+
+NOTE: 若故障轉移已完成但重新保護仍處於待定狀態，請勿開始移轉。確保在繼續遷移之前重新保護過程已完成。如果正在進行測試故障轉移，請清理測試故障轉移並開始遷移。
+
+. 請依照下列步驟刪除 VMware Site Recovery 中適用於 VMware vSphere 9.xx 的ONTAP工具 SRA 適配器：
++
+.. 前往 VMware Live Site Recovery 設定管理頁面
+.. 前往*儲存複製適配器*部分。
+.. 從省略號選單中選擇*重設配置*。
+.. 從省略號選單中選擇*刪除*。
+
+
+. 在保護站點和復原站點上執行這些步驟。
++
+.. link:../manage/enable-services.html["ONTAP tools for VMware vSphere"]
+.. 使用下列步驟ONTAP tools for VMware vSpherelink:../protect/configure-on-srm-appliance.html["在 VMware Live Site Recovery 設備上設定 SRA"]。
+.. 在 VMware Live Site Recovery 使用者介面頁面，執行 *發現陣列* 和 *發現裝置* 操作，確認裝置顯示與遷移前一致。
+
+
+

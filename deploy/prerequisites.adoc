@@ -1,0 +1,232 @@
+---
+permalink: deploy/prerequisites.html 
+sidebar: sidebar 
+keywords: ONTAP tools,Storage Replication Adapter 
+summary: 在部署ONTAP tools for VMware vSphere之前，您應該熟悉部署套件的空間需求和一些基本的主機系統需求。 
+---
+= ONTAP tools for VMware vSphere的要求和設定限制
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在部署ONTAP tools for VMware vSphere之前，您應該熟悉部署套件的空間需求和一些基本的主機系統需求。
+
+您可以將適用ONTAP tools for VMware vSphere與 VMware vCenter Server Virtual Appliance (vCSA) 合併使用。您應該在包含 ESXi 系統的受支援的 vSphere 用戶端上部署ONTAP tools for VMware vSphere。
+
+
+
+== 系統需求
+
+* *每個節點的安裝包空間需求*
++
+** 精簡配置安裝需要 15 GB
+** 厚配置安裝需要 348 GB
+
+
+* *主機系統大小需求* 依部署大小建議的記憶體如下表所示。要部署高可用性 (HA)，您將需要表中指定的三倍設備大小。
+
+
+|===
+
+
+| *部署類型* | *每個節點的 CPU 數量* | *每個節點的記憶體（GB）* | *每個節點厚配置的磁碟空間（GB）* 
+
+
+| 小的 | 9 | 18 | 350 
+
+
+| 中等的 | 13 | 26 | 350 
+
+
+| 大型注意：大型部署僅適用於 HA 配置。 | 17 | 34 | 350 
+|===
+
+NOTE: 啟用備份後，每個ONTAP工具叢集都需要在部署虛擬機器的資料儲存上額外 50 GB 的空間。因此，非 HA 需要 400 GB，而 HA 總共需要 1100 GB 的空間。
+
+
+
+== 最低儲存和應用要求
+
+|===
+| 儲存、主機和應用程式 | 版本要求 
+
+
+| ONTAP | 9.14.1、9.15.1、9.16.0、9.16.1 和 9.16.1P3 FAS、 ASA A 系列、 ASA C 系列、 AFF A 系列、 AFF C 系列和ASA r2。 
+
+
+| ONTAP工具支援的 ESXi 主機 | 7.0.3 及更高版本 
+
+
+| ONTAP工具支援 vCenter Server | 7.0U3 以上版本 
+
+
+| VASA 提供者 | 3.0 
+
+
+| OVA 應用程式 | 10.4 
+
+
+| ESXi 主機部署ONTAP工具虛擬機 | 7.0U3 和 8.0U3 
+
+
+| vCenter Server 部署ONTAP工具虛擬機 | 7.0 和 8.0 
+|===
+
+NOTE: 從適用於ONTAP tools for VMware vSphere開始，虛擬機器硬體從版本 10 變更為 17。
+
+互通性表工具 (IMT) 包含有關ONTAP、vCenter Server、ESXi 主機和插件應用程式的支援版本的最新資訊。
+
+https://imt.netapp.com/matrix/imt.jsp?components=105475;&solution=1777&isHWU&src=IMT["互通性矩陣工具"^]
+
+
+
+== 端口要求
+
+下表概述了NetApp所使用的網路連接埠及其用途。請確保這些連接埠處於開放狀態且可訪問，以確保系統正常運作和通訊。請確保已完成必要的網路配置，以允許這些連接埠上的流量，從而使相關服務正常運作。根據您的安全策略，您可能需要設定防火牆或其他安全設備，以允許此類流量在您的網路中傳輸。
+
+|===
+
+
+| *港口* | *協定* | *描述* 
+
+
+| 8143 | TCP | ONTAP工具的 HTTP/HTTPS 連線。 
+
+
+| 8043 | TCP | ONTAP工具的 HTTP/HTTPS 連線。 
+
+
+| 9060 | TCP | ONTAP工具的 HTTP/HTTPS 連線。 
+
+
+| 22 | TCP | Ansible 在叢集設定期間使用此 SSH 連接埠進行通訊。此連接埠是更改維護使用者密碼、狀態訊息等功能所必需的，並且在 HA 配置的情況下更新所有三個節點上的值。 
+
+
+| 443 | TCP | 這是 VASA 提供程序服務的傳入通訊的直通連接埠。  VASA 提供者自簽章憑證和自訂 CA 憑證託管在此連接埠上。 
+
+
+| 8443 | TCP | 此連接埠透過 swagger 和 Manager 使用者介面應用程式託管 API 文件。 
+
+
+| 2379 | TCP | 這是客戶端請求的預設端口，例如獲取、放置、刪除或監視 etcd 鍵值存儲中的鍵。 
+
+
+| 2380 | TCP | 這是 etcd 叢集的伺服器到伺服器通訊的預設端口，用於 etcd 依賴的 raft 共識演算法來實現資料複製和一致性。 
+
+
+| 7472 | TCP/UDP | 這是 prometheus 指標服務連接埠。 
+
+
+| 7946 | TCP/UDP | 此連接埠用於docker的容器網路發現。 
+
+
+| 9083 | TCP | 此連接埠是 VASA Provider 服務內部使用的服務連接埠。 
+
+
+| 1162 | UDP | 這是 SNMP 陷阱封包連接埠。 
+
+
+| 6443 | TCP | 來源：RKE2 代理節點。目的地：REK2 伺服器節點。描述：Kubernetes API 
+
+
+| 9345 | TCP | 來源：RKE2 代理節點。目的地：REK2 伺服器節點。描述：REK2 主管 API 
+
+
+| 8472 | TCP+UDP | 當使用 flannel VXLAN 時，所有節點都需要能夠透過 UDP 連接埠 8472 存取其他節點。來源：所有 RKE2 節點。目的地：所有 REK2 節點。說明：帶有 VXLAN 的 Canal CNI 
+
+
+| 10250 | TCP | 來源：所有 RKE2 節點。目的地：所有 REK2 節點。說明：Kubelet 指標 
+
+
+| 30000-32767 | TCP | 來源：所有 RKE2 節點。目的地：所有 REK2 節點。描述：NodePort 連接埠範圍 
+
+
+| 123 | TCP | Ntpd 使用此連接埠來執行 NTP 伺服器的驗證。 
+
+
+| 137-139 | TCP/UDP | SMB/Windows 共享資料包。 
+
+
+| 6789 | TCP | Ceph 監視器（MON） 
+
+
+| 3300 | TCP | Ceph 監視器（MON） 
+
+
+| 6800-7300 | TCP | Ceph 管理器、OSD 和檔案系統 (MDS)。 
+
+
+| 80 | TCP | Ceph RADOS 閘道 (RGW) 
+
+
+| 9080 | TCP | VP HTTP/HTTPS 連線（對於 IPv4 僅來自 127.0.0.0/8 或對於 IPv6 僅來自 ::1/128）。 
+|===
+
+
+== ONTAP tools for VMware vSphere的設定限制
+
+您可以使用下表作為指南來ONTAP tools for VMware vSphere。
+
+|===
+
+
+| 部署 | *類型* | vVols數量 | *主機數量* 
+
+
+| 非HA | 小號（S） | ~12K | 32 
+
+
+| 非HA | 中號（M） | ~24K | 64 
+
+
+| 高可用性 | 小號（S） | ~24K | 64 
+
+
+| 高可用性 | 中號（M） | ~5萬 | 128 
+
+
+| 高可用性 | 大號（L） | ~10萬 | 256 [注意] 表中的主機數量顯示來自多個 vCenter 的主機總數。 
+|===
+
+
+== ONTAP tools for VMware vSphere- 儲存複製適配器 (SRA)
+
+下表顯示了使用適用ONTAP tools for VMware vSphere的每個 VMware Live Site Recovery 實例支援的數量。
+
+|===
+| vCenter 部署規模 | *小的* | *中等的* 
+
+
+| 配置使用基於陣列的複製進行保護的虛擬機器總數 | 2000 | 5000 
+
+
+| 基於陣列的複製保護群組總數 | 250 | 250 
+
+
+| 每個恢復計劃的保護組總數 | 50 | 50 
+
+
+| 複製資料儲存的數量 | 255 | 255 
+
+
+| 虛擬機器數量 | 4000 | 7000 
+|===
+下表顯示了 VMware Live Site Recovery 的數量以及與 ONTAP tools for VMware vSphere。
+
+|===
+
+
+| *VMware Live Site Recovery 實例數量* | * ONTAP工具部署規模* 
+
+
+| 最多 4 | 小的 
+
+
+| 4 至 8 | 中等的 
+
+
+| 超過8 | 大的 
+|===
+有關更多信息，請參閱 https://techdocs.broadcom.com/us/en/vmware-cis/live-recovery/live-site-recovery/9-0/overview/site-recovery-manager-system-requirements/operational-limits-of-site-recovery-manager.html["VMware Live Site Recovery 的操作限制"] 。

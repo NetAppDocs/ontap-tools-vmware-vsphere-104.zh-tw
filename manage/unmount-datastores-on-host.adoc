@@ -1,0 +1,36 @@
+---
+permalink: manage/unmount-datastores-on-host.html 
+sidebar: sidebar 
+keywords:  
+summary: 卸載資料儲存操作從 ESXi 主機卸載 NFS 或 VMFS 資料儲存。對於由ONTAP tools for VMware vSphere發現或管理的 NFS 和 VMFS 資料儲存庫，啟用了卸載資料儲存庫操作。 
+---
+= 卸載 NFS 和 VMFS 資料存儲
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+卸載資料儲存操作從 ESXi 主機卸載 NFS 或 VMFS 資料儲存。對於由ONTAP tools for VMware vSphere發現或管理的 NFS 和 VMFS 資料儲存庫，啟用了卸載資料儲存庫操作。
+
+.步驟
+. 登入 vSphere 客戶端。
+. 右鍵點選 NFS 或 VMFS 資料儲存物件並選擇*卸載資料儲存*。
++
+將開啟一個對話方塊並列出安裝了資料儲存區的 ESXi 主機。當對受保護的資料儲存體執行操作時，螢幕上會顯示警告訊息。
+
+. 選擇一個或多個 ESXi 主機來卸載資料儲存。
++
+您無法從所有主機卸載資料儲存區。使用者介面建議您改用刪除資料儲存操作。
+
+. 選擇*卸載*按鈕。
++
+如果資料儲存區是受保護主機叢集的一部分，則會顯示警告訊息。
+
+
+
+
+NOTE: 如果受保護的資料儲存區已卸載，則現有的保護設定可能會導致保護效果不完整。請參閱link:../manage/edit-hostcluster-protection.html["修改受保護的主機集群"]以實現全面保護。
+
+.下一步是什麼？
+您可以在最近任務面板中追蹤進度。

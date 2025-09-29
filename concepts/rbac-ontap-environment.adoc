@@ -1,0 +1,62 @@
+---
+permalink: concepts/rbac-ontap-environment.html 
+sidebar: sidebar 
+keywords: ontap rbac, ontap rbac environment 
+summary: ONTAP提供了強大且可擴展的 RBAC 環境。您可以使用 RBAC 功能來控制透過 REST API 和 CLI 公開的儲存和系統操作的存取。在使用ONTAP tools for VMware vSphere 10 部署之前，熟悉環境會很有幫助。 
+---
+= 適用於ONTAP tools for VMware vSphere的ONTAP RBAC 環境
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP提供了強大且可擴展的 RBAC 環境。您可以使用 RBAC 功能來控制透過 REST API 和 CLI 公開的儲存和系統操作的存取。在使用ONTAP tools for VMware vSphere 10 部署之前，熟悉環境會很有幫助。
+
+
+
+== 管理選項概述
+
+根據您的環境和目標，使用ONTAP RBAC 時有多種可用選項。以下是主要行政決定的概述。另請參閱 https://docs.netapp.com/us-en/ontap-automation/rest/rbac_overview.html["ONTAP自動化：RBAC 安全概述"^]了解更多。
+
+
+NOTE: ONTAP RBAC 針對儲存環境進行了客製化，並且比 vCenter Server 提供的 RBAC 實作更簡單。使用ONTAP，您可以直接向使用者指派角色。ONTAP RBAC 不需要配置明確的權限（例如用於 vCenter Server 的權限）。
+
+.角色和權限的類型
+定義ONTAP使用者時需要ONTAP角色。  ONTAP角色有兩種類型：
+
+* 休息
++
+REST 角色是在ONTAP 9.6 中引入的，通常適用於透過 REST API 存取ONTAP 的使用者。這些角色中所包含的權限是根據對ONTAP REST API 端點的存取及其相關操作來定義的。
+
+* 傳統的
++
+這些是ONTAP 9.6 之前包含的舊角色。它們仍然是 RBAC 的基礎面向。權限是根據對ONTAP CLI 命令的存取來定義的。
+
+
+
+雖然 REST 角色是最近才引入的，但傳統角色也具有一些優勢。例如，可以選擇包含附加查詢參數，以便權限更精確地定義它們所套用的物件。
+
+.範圍
+ONTAP角色可以透過兩種不同的範圍之一來定義。它們可以應用於特定資料 SVM（SVM 層級）或整個ONTAP叢集（叢集層級）。
+
+.角色定義
+ONTAP在叢集和 SVM 層級提供了一組預定義角色。您也可以定義自訂角色。
+
+
+
+== 使用ONTAP REST 角色
+
+使用ONTAP tools for VMware vSphere隨附的ONTAP REST 角色時需要考慮幾個事項。
+
+.角色映射
+無論使用傳統角色還是 REST 角色，所有ONTAP存取決策都是基於底層 CLI 命令做出的。但由於 REST 角色中的權限是根據 REST API 端點定義的，因此ONTAP需要為每個 REST 角色建立一個_映射_傳統角色。因此，每個 REST 角色都映射到一個底層傳統角色。這使得ONTAP能夠以一致的方式做出存取控制決策，而不管角色類型如何。您不能修改並行映射的角色。
+
+.使用 CLI 權限定義 REST 角色
+由於ONTAP始終使用 CLI 命令來確定基本層級的存取權限，因此可以使用 CLI 命令權限而不是 REST 端點來表達 REST 角色。這種方法的一個好處是可以比傳統角色提供更多的粒度。
+
+.定義ONTAP角色時的管理介面
+您可以使用ONTAP CLI 和 REST API 建立使用者和角色。但是，使用系統管理器介面以及透過ONTAP工具管理器提供的 JSON 檔案會更方便。看link:../concepts/rbac-ontap-use.html["將ONTAP RBAC 與ONTAP tools for VMware vSphere結合使用"]了解更多。

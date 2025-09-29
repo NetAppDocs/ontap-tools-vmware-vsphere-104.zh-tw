@@ -1,0 +1,31 @@
+---
+permalink: release-notes/whats-new.html 
+sidebar: sidebar 
+keywords: 'what"s new, release notes, 10.4, ONTAP tools for VMware vSphere' 
+summary: 了解適用於ONTAP tools for VMware vSphere中提供的新功能。 
+---
+= 適用於ONTAP tools for VMware vSphere的新功能
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+了解適用於ONTAP tools for VMware vSphere中提供的新功能。
+
+[cols="30%,70%"]
+|===
+| 更新 | 描述 
+
+
+| link:../configure/create-datastore.html["支援每個叢集 12 個節點的ASA r2 系統"] | ONTAP tools for VMware vSphere支援每個叢集最多 12 個節點的ASA r2 儲存系統的工作流程，從而提高了資料管理效率和可擴充性。它支援具有 iSCSI 和 FC 協定的vVols資料存儲，以及具有 iSCSI、FC 和 NVMe 協定的 VMFS 資料存儲，提供靈活且增強的存儲選項。 
+
+
+| link:../manage/add-ntpserver.html["ONTAP工具管理器使用者介面增強功能"] | 現在您可以啟用 NTP 伺服器，以便在整個環境中實現精確的時間同步，並配置遙測設置，以從ONTAP工具管理器介面監控和分析系統效能。這些設定在維護控制台中不再可用。 
+
+
+| 增強的安全功能 | 安全功能現在提供增強的保護並符合行業標準，提供強大且用戶友好的體驗，幫助管理員更有效地管理 VMware 環境。 
+
+
+| link:../protect/enable-storage-replication-adapter.html["增強的 SRA 災難復原能力"] | ONTAP tools for VMware vSphere現在支援使用自訂命名快照的網站復原設備 (SRA) 以及SnapMirror計畫快照副本進行災難復原作業。 
+|===

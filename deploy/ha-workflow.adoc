@@ -1,0 +1,41 @@
+---
+permalink: deploy/ha-workflow.html 
+sidebar: sidebar 
+keywords: ONTAP tools,Storage Replication Adapter 
+summary: 開始使用適用於ONTAP tools for VMware vSphere包含幾個步驟。 
+---
+= 高可用性 (HA) 部署工作流程
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您使用vVols資料存儲，則需要將ONTAP工具的初始部署擴展為高可用性 (HA) 配置並啟用 VASA 提供者服務。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一"]擴大部署
+[role="quick-margin-para"]
+您可以擴充ONTAP tools for VMware vSphere，以增加部署中的節點數量，並將設定變更為 HA 設定。
+
+[role="quick-margin-list"]
+* link:../manage/edit-appliance-settings.html["變更ONTAP tools for VMware vSphere"]
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["二"]啟用服務
+[role="quick-margin-para"]
+若要設定vVols資料存儲，您必須啟用 VASA 提供者服務。向 vCenter 註冊 VASA 提供者並確保您的儲存策略符合 HA 要求，包括正確的網路和儲存配置。
+
+[role="quick-margin-para"]
+啟用 SRA 服務以使用適用於 VMware Site Recovery Manager (SRM) 或 VMware Live Site Recovery (VLSR) 的ONTAP工具儲存複製適配器 (SRA)。
+
+[role="quick-margin-list"]
+* link:../manage/enable-services.html["啟用 VASA 提供程序和 SRA 服務"]
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"]升級證書
+[role="quick-margin-para"]
+如果您將 vVol 資料儲存體與多個 vCenter Server 執行個體一起使用，請將自簽章憑證升級為憑證授權單位 (CA) 簽署的憑證。
+
+[role="quick-margin-list"]
+* link:../manage/certificate-manage.html["管理證書"]
+

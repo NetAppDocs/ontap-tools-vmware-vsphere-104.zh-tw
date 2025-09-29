@@ -1,0 +1,37 @@
+---
+indexpage:
+  title: ONTAP tools for VMware vSphere文檔
+  lead: ONTAP tools for VMware vSphere可讓您在 vCenter Server 環境中設定、管理和保護虛擬資料儲存區。
+  tiles:
+  - title: 開始
+    links:
+    - title: 發行說明
+      url: https://library.netapp.com/ecm/ecm_download_file/ECMLP3343864
+    - title: 了解適用於ONTAP tools for VMware vSphere
+      url: "/concepts/ontap-tools-overview.html"
+    - title: ONTAP tools for VMware vSphere
+      url: "/deploy/ontap-tools-deployment.html"
+    - title: 升級到適用ONTAP tools for VMware vSphere的最新版本
+      url: "/upgrade/upgrade-ontap-tools.html"
+    - title: ONTAP tools for VMware vSphere
+      url: migrate/migrate-to-latest-ontaptools.html
+  - title: 使用適用ONTAP tools for VMware vSphere
+    links:
+    - title: 配置基於角色的存取控制
+      url: "/concepts/rbac-learn-about.html"
+    - title: 配置遠端診斷
+      url: "/manage/configure-remote-diagnostic-access.html"
+    - title: 適用於ONTAP tools for VMware vSphere的高可用性
+      url: "/concepts/high-availability.html"
+    - title: 保護您的資料存儲
+      url: "/protect/enable-storage-replication-adapter.html"
+  - title: 更多資源
+    links:
+    - title: 適用於ONTAP tools for VMware vSphere的文檔
+      url: https://mysupport.netapp.com/documentation/productlibrary/index.html?productID=63792
+    - title: NetApp知識庫 -ONTAP tools for VMware vSphere
+      url: https://kb.netapp.com/data-mgmt/OTV
+    - title: NetApp社群 -ONTAP tools for VMware vSphere
+      url: https://community.netapp.com/t5/VMware-Solutions-Discussions/bd-p/vmware-solutions-discussions
+    - title: 了解 VMware vSphere 與ONTAP
+      url: https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vsphere-overview.html#why-ontap-for-vsphere

@@ -1,0 +1,24 @@
+---
+permalink: manage/disable-autosupport.html 
+sidebar: sidebar 
+keywords:  
+summary: 首次配置儲存系統時， AutoSupport預設為啟用狀態。啟用後 24 小時內向技術支援發送訊息。 
+---
+= 禁用AutoSupport
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+首次配置儲存系統時， AutoSupport預設為啟用狀態。啟用後 24 小時內向技術支援發送訊息。當您停用AutoSupport時，您將不再獲得主動支援和監控。
+
+
+NOTE: 建議您保持AutoSupport處於啟用狀態。它有助於加快問題的檢測和解決。即使在停用的情況下，系統也會收集AutoSupport資訊並將其儲存在本機。但是，它不會將報告發送到任何網路。
+
+.步驟
+. 從 Web 瀏覽器啟動ONTAP工具管理器： `\https://<ONTAPtoolsIP>:8443/virtualization/ui/`
+. 使用您在部署期間提供的適用於ONTAP tools for VMware vSphere管理員憑證登入。
+. 選擇*設定* > *遙測* > *編輯*選項。
+. 取消選擇* AutoSupport*選項並儲存變更。
+

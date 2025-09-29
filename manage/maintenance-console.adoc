@@ -1,0 +1,76 @@
+---
+permalink: manage/maintenance-console.html 
+sidebar: sidebar 
+keywords:  
+summary: 您可以使用ONTAP工具的維護控制台管理您的應用程式、系統和網路設定。您可以更改您的管理員密碼和維護密碼。您還可以產生支援包、設定不同的日誌等級、檢視和管理 TLS 配置以及啟動遠端診斷。 
+---
+= ONTAP tools for VMware vSphere概述
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用ONTAP工具的維護控制台管理您的應用程式、系統和網路設定。您可以更改您的管理員密碼和維護密碼。您還可以產生支援包、設定不同的日誌等級、檢視和管理 TLS 配置以及啟動遠端診斷。
+
+部署ONTAP tools for VMware vSphere後，您應該安裝 VMware 工具以存取維護控制台。你應該使用 `maint`作為您在部署期間設定的使用者名稱和密碼，以登入ONTAP工具的維護控制台。您應該使用 *nano* 在維護或 root 登入控制台中編輯文件。
+
+
+NOTE: 您應該為 `diag`使用者同時啟用遠端診斷。
+
+您應該使用已部署的ONTAP tools for VMware vSphere *Summary* 標籤來存取維護控制台。當您選擇image:../media/launch-maintenance-console.gif["播放鈕"]，維護控制台啟動。
+
+|===
+
+
+| *控制台選單* | *選項* 
+
+
+ a| 
+應用程式配置
+ a| 
+. 顯示伺服器狀態摘要
+. 變更 VASA 提供程序服務和 SRA 服務的 LOG 級別
+
+
+
+
+ a| 
+系統配置
+ a| 
+. 重啟虛擬機
+. 關閉虛擬機
+. 更改“maint”使用者密碼
+. 更改時區
+. 增加監獄磁碟大小（/jail）
+. 升級
+. 安裝 VMware Tools
+
+
+
+
+ a| 
+網路設定
+ a| 
+. 顯示 IP 位址設定
+. 顯示域名搜尋設置
+. 更改域名搜尋設置
+. 顯示靜態路由
+. 變更靜態路由
+. 提交更改
+. Ping 主機
+. 恢復預設設定
+
+
+
+
+ a| 
+支持和診斷
+ a| 
+. 訪問診斷外殼
+. 啟用遠端診斷存取
+. 提供 vCenter 憑證以進行備份
+. 進行備份
+
+
+|===

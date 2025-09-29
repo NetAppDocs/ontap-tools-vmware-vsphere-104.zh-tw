@@ -1,0 +1,62 @@
+---
+permalink: protect/configure-array-manager.html 
+sidebar: sidebar 
+keywords:  
+summary: '您可以使用 VMware Live Site Recovery 的陣列管理器精靈配置儲存複製適配器 (SRA)，以實現 VMware Live Site Recovery 與儲存虛擬機器 (SVM) 之間的互動。' 
+---
+= 使用陣列管理器配置 SRA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用 VMware Live Site Recovery 的陣列管理器精靈配置儲存複製適配器 (SRA)，以實現 VMware Live Site Recovery 與儲存虛擬機器 (SVM) 之間的互動。
+
+.開始之前
+* 您應該已經在 VMware Live Site Recovery 中將受保護的網站和復原網站配對。
+* 在配置陣列管理器之前，您應該已經配置了板載儲存。
+* 您應該已經配置並複製了受保護網站和復原網站之間的SnapMirror關係。
+* 您應該已啟用 SVM 管理 LIF 以啟用多租戶。
+
+
+SRA支援叢集層級管理和SVM層級管理。如果在叢集層級新增存儲，則可以發現叢集中的所有 SVM 並對其執行操作。如果在 SVM 層級新增存儲，則您只能管理該特定的 SVM。
+
+.步驟
+. 在 VMware Live Site Recovery 中，選擇 *陣列管理員* > *新增陣列管理器*。
+. 輸入以下資訊來描述 VMware Live Site Recovery 中的陣列：
++
+.. 在「顯示名稱」欄位中輸​​入名稱來識別陣列管理器。
+.. 在 *SRA 類型* 欄位中，選擇 * NetApp Storage Replication Adapter for ONTAP*。
+.. 輸入連接到叢集或 SVM 的資訊：
++
+*** 如果您要連接到集群，則應輸入集群管理 LIF。
+*** 如果您直接連接到 SVM，則應輸入 SVM 管理 LIF 的 IP 位址。
++
+
+NOTE: 設定陣列管理器時，您應該對儲存系統使用與在適用ONTAP tools for VMware vSphere中安裝儲存系統時相同的連線（IP 位址）。例如，如果陣列管理器配置是 SVM 範圍的，則應在 SVM 層級新增適用於ONTAP tools for VMware vSphere下的儲存。
+
+
+
+.. 如果連接到集群，請在 *SVM 名稱* 欄位中指定 SVM 名稱，或將其留空以管理集群中的所有 SVM。
+.. 在「磁碟區包含清單」欄位中輸​​入要發現的磁碟區。
++
+您可以在受保護網站輸入來源卷，在復原網站輸入複製的目標卷。
+
++
+例如，如果您想要發現與磁碟區 dst_vol1 具有SnapMirror關係的磁碟區 src_vol1，則應在受保護網站欄位中指定 src_vol1，並在復原網站欄位中指定 dst_vol1。
+
+.. *（可選）*在「卷宗排除清單」欄位中輸​​入要從發現中排除的磁碟區。
++
+您可以在受保護網站輸入來源卷，在復原網站輸入複製的目標卷。
+
++
+例如，如果要排除與磁碟區 _dst_vol1_ 具有SnapMirror關係的磁碟區 _src_vol1_，則應在受保護網站欄位中指定 _src_vol1_，並在復原網站欄位中指定 _dst_vol1_。
+
+
+
+. 選擇“下一步”。
+. 驗證陣列是否被發現並顯示在「新增陣列管理器」視窗的底部，然後選擇「*完成*」。
+
+
+您可以使用適當的 SVM 管理 IP 位址和憑證對復原站點執行相同的步驟。在新增陣列管理器精靈的啟用陣列對螢幕上，您應該驗證是否選擇了正確的陣列對，以及它是否顯示為已準備好啟用。
