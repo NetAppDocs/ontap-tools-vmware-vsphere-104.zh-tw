@@ -27,3 +27,6 @@ ONTAP tools for VMware vSphere提供了啟用 SRA 功能來設定災難復原的
 . 將 SRA 外掛程式的 _.tar.gz_ 安裝程式上傳到 VMware Live Site Recovery。
 . 重新掃描適配器以驗證 VMware Live Site Recovery 儲存複製適配器頁面上的詳細資訊是否已更新。
 
+
+.相關資訊
+https://docs.netapp.com/us-en/netapp-solutions-virtualization/vmware/vmw-nfs-vlsr.html#scenario-overview["使用 VMware Site Recovery Manager 設定 NFS 資料儲存區的災難復原"]

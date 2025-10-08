@@ -14,7 +14,7 @@ summary: 刪除ONTAP tools for VMware vSphere後，您應該清理部署期間�
 當您使用專用ONTAP叢集為 VMware 部署的ONTAP工具時，它會建立許多未使用的FlexVol磁碟區。刪除ONTAP tools for VMware vSphere後，您應該刪除FlexVol磁碟區以避免可能對效能造成影響。
 
 .步驟
-. 從第一個節點虛擬機器確定ONTAP tools for VMware vSphere。
+. 從ONTAP工具管理節點 VM 決定ONTAP tools for VMware vSphere部署類型。
 +
 _cat /opt/netapp/meta/ansible_vars.yaml | grep -i 協定_
 

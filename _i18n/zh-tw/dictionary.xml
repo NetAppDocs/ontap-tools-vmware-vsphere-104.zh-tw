@@ -987,13 +987,9 @@
   <block id="84654158695aac7865527b63b1f18c59" category="paragraph">使用下列工作表收集適用於ONTAP tools for VMware vSphere初始部署所需的資訊：</block>
   <block id="9b97b7bd5e0a87be7bf218224ada83cf" category="cell">要求</block>
   <block id="d9fa81fca11f55d9fd9f33b399ab9cd6" category="cell">你的價值</block>
-  <block id="42c7c15e79d589d9c277ebcfaf6f5cbd" category="cell">ONTAP工具應用程式的 IP 位址。這是用於存取ONTAP工具 Web 介面的 IP 位址</block>
-  <block id="b88a0208d3e02d8e8542318a4bf1dae1" category="cell">ONTAP工具用於內部通訊的虛擬 IP 位址。此 IP 位址用於具有多個ONTAP工具實例的設定中的內部通訊。此 IP 位址不應與ONTAP工具應用程式的 IP 位址相同。</block>
-  <block id="5759f8c1a9261b4c6c0c86f5089433b5" category="cell">第一個節點的 DNS 主機名</block>
   <block id="68eeeed01bf11dc7edb656408cbfd0b6" category="cell">主 DNS 伺服器</block>
   <block id="9fab0542abb763e3e75e782994d85d07" category="cell">輔助 DNS 伺服器</block>
   <block id="a8887a6c969074f8ef768152e95c492b" category="cell">DNS 搜尋網域</block>
-  <block id="5813391479b0e439cbd9b28d9c14a7b2" category="cell">第一個節點的 IPv4 位址。它是管理網路上節點管理介面的唯一 IPv4 位址。</block>
   <block id="8e7f18a32aaa409ac6db22c6061404a7" category="cell">IPv4 位址的子網路遮罩</block>
   <block id="6eb16330b386af07329e0c9d0a1c2421" category="cell">IPv4 位址的預設網關</block>
   <block id="92abdbc0e1cb9b88fc2be7c70ef79e37" category="cell">IPv6 位址（可選）</block>
@@ -1300,7 +1296,6 @@
   <block id="b0a6cb6bc671c9e84eb8bf05473ab774" category="summary">刪除ONTAP tools for VMware vSphere後，您應該清理部署期間建立的 FlexVolume。如果您已使用專用ONTAP叢集進行部署，則應清理 FlexVolume，因為部署會建立大量未使用的 FlexVolume，導致效能下降。</block>
   <block id="fc670824c9b9087edaedbd8931be914a" category="doc">刪除FlexVol卷</block>
   <block id="94ba231101263cc02a5bbd35865c2569" category="paragraph">當您使用專用ONTAP叢集為 VMware 部署的ONTAP工具時，它會建立許多未使用的FlexVol磁碟區。刪除ONTAP tools for VMware vSphere後，您應該刪除FlexVol磁碟區以避免可能對效能造成影響。</block>
-  <block id="15f0aef685a07d8a64ee213328fd4abf" category="list-text">從第一個節點虛擬機器確定ONTAP tools for VMware vSphere。</block>
   <block id="6aa67ccabd12c5a1df1d1b2ed5e708fe" category="paragraph">_cat /opt/netapp/meta/ansible_vars.yaml | grep -i 協定_</block>
   <block id="3fcb4ec0988a47a419299691b19d04fa" category="paragraph">如果是 iSCSI 部署，您還需要刪除 igroup。</block>
   <block id="80ca6447cbd8bd1ace2853c2fc7c8028" category="list-text">取得FlexVol磁碟區的列表。</block>
@@ -1361,7 +1356,6 @@
   <block id="aa98f0811d69b997695b614c2cf657a5" category="list-text">託管ONTAP工具的虛擬機器並非直接部署在 ESXi 主機上。虛擬機器應部署在叢集或資源池上。</block>
   <block id="c880e86f7ea824fe1bcb4f6262d884ac" category="admonition">啟用 HA 設定後，您無法還原到非 HA 單節點配置。</block>
   <block id="078e62684b70c2d03c38d8d57e5953c1" category="list-text">在「編輯設備設定」視窗的「HA 設定」部分中，您可以輸入節點 2 和 3 的詳細資訊。ONTAP tools for VMware vSphere在 HA 設定中支援三個節點。</block>
-  <block id="949ade5949e752c9b4f748b78767cb9b" category="admonition">為了簡化工作流程，大多數輸入選項都預先填入了節點 1 網路詳細資訊。但是，您可以在導航到精靈的最後一頁之前編輯輸入資料。只有在第一個節點上啟用 IPv6 位址時，您才可以輸入其他兩個節點的 IPv6 位址詳細資訊。</block>
   <block id="da8b2f27297a9b9118f73acd0acb3d1c" category="paragraph">確保 ESXi 主機僅包含一個ONTAP工具虛擬機器。每次移動到下一個視窗時都會驗證輸入。</block>
   <block id="5a3dd06e1dba58a23c8b8e8cc1b07e40" category="list-text">查看“*摘要*”部分中的詳細資訊並“*儲存*”變更。</block>
   <block id="083fdc949ae8ae40c1cb8ff83d473adb" category="paragraph">*概覽*頁面顯示部署的狀態。使用作業 ID，您也可以從作業檢視追蹤編輯設備設定作業的狀態。</block>
@@ -1713,7 +1707,6 @@
   <block id="bd294460cf119253eaf3ca5c5ff6bb68" category="summary">在重新啟動客戶作業系統作業期間，grub 選單顯示重設維護控制台使用者密碼的選項。</block>
   <block id="f0b6145036d556579acfe2db1be06830" category="doc">重設維護控制台使用者密碼</block>
   <block id="fb3374f098836c23a540ce170660c753" category="paragraph">在用戶機作業系統重新啟動操作期間，grub 選單會顯示一個用於重設維護控制台使用者密碼的選項。此選項用於更新對應虛擬機器上現有的維護控制台使用者密碼。重置密碼完成後，虛擬機器將重新啟動以設定新密碼。在高可用性部署方案中，虛擬機器重新啟動後，其他兩台虛擬機器上的密碼會自動更新。</block>
-  <block id="843e69439f5c77bf5c54644b48190fc1" category="admonition">對於ONTAP tools for VMware vSphere，您應該變更第一個節點（即 node1）上的維護控制台使用者密碼。</block>
   <block id="2ba7610b112ed8fa5391c57f6419a68b" category="list-text">登入您的 vCenter Server</block>
   <block id="2b9e667aee365fdcad035cc69436d9d5" category="inline-image-macro">重置維護用戶的密碼</block>
   <block id="9c53638886d156ef1724c25c3b171528" category="list-text">右鍵單擊虛擬機器並選擇*電源*&gt;*重新啟動客戶作業系統*在系統重新啟動期間，您將看到以下畫面：<block ref="515bd311b9d352624722007b23637a91" category="inline-image-macro-rx" type="image"></block></block>
@@ -2280,7 +2273,6 @@
   <block id="9b9935ad5969c28de13381a2e512b47c" category="paragraph">筆記：</block>
   <block id="4d803f2463e7fa94cba591b36f910252" category="list-text">在ASA r2 系統中，您應該先將ONTAP tools for VMware vSphere升級到ONTAP 9.16.1，然後再新增更多儲存可用區 (SAZ)。</block>
   <block id="60014b6033b092b9980ed9181fab235f" category="list-text">如果從ONTAP tools for VMware vSphere升級到 10.4 版本失敗，則不支援回滾。若要復原設置，請使用ONTAP tools for VMware vSphere的 RPO 以及ONTAP tools for VMware vSphere的接近零 RPO 或快照復原。</block>
-  <block id="a37e11c372d948a69c1ca06f96f29654" category="paragraph">對於非 HA 升級，請關閉ONTAP工具 VM；對於 HA 升級，請關閉第一個節點，然後再對虛擬機器 (VM) 設定進行以下變更。</block>
   <block id="93470a6d5ec43c6c46729637f4feda14" category="paragraph">如果您要從適用於ONTAP tools for VMware vSphere升級，則需要先完成下列步驟才能繼續升級任務：* 為每個節點額外新增 100 GB 硬碟，因為服務資料儲存在虛擬機器本機。* 根據部署情況變更已關閉虛擬機器的 CPU 和記憶體。啟用 CPU 和 RAM 的熱插件。</block>
   <block id="26b17225b626fb9238849fd60eabdf60" category="paragraph">+</block>
   <block id="02046ad0e82ff27f6e1774aa588fd853" category="cell">部署類型</block>
@@ -2347,7 +2339,6 @@
   <block id="d6481cf07889069ce702a2aa485a338b" category="list-text">從管理器使用者介面停用服務</block>
   <block id="c8c29d2a26286541354fc8e377f3b6ce" category="list-text">從非 HA 設定移至 HA 設定</block>
   <block id="4521a8bb9c231770ace79aca6602dc13" category="list-text">將非 HA 小型配置擴展為非 HA 中型配置，或擴展為 HA 中型或大型配置。</block>
-  <block id="48f74593cd55f85759914f3614a0c3b9" category="list-text">如果是非 HA 升級，請重新啟動ONTAP工具 VM 以反映變更。如果進行 HA 升級，請重新啟動第一個節點以反映該節點上的變更。</block>
   <block id="d8f7e97e3245c4d37ee67ab9e2dc4485" category="paragraph">將ONTAP tools for VMware vSphere從先前版本升級至 10.4 後，請重新掃描 SRA 適配器以驗證 VMware Live Site Recovery 儲存複製適配器頁面上的詳細資訊是否已更新。</block>
   <block id="12da67bb345ae219e1ec7b1f8d8f09dd" category="paragraph">成功升級後，請依照下列步驟從ONTAP手動移除Trident磁碟區：</block>
   <block id="97157e33a0e033b7effd56e6305b9030" category="admonition">如果ONTAP tools for VMware vSphere處於非 HA 小型或中型（本機路徑）配置，則不需要執行這些步驟。</block>
@@ -2409,4 +2400,15 @@
   <block id="5dd03e8d039863e563e049be198c3fd3" category="sidebar">發行說明</block>
   <block id="ed8359854c43609fca7bc8a46cca9eac" category="sidebar">ONTAP工具 9 和ONTAP工具 10 功能比較</block>
   <block id="dd018bb6638d4453bb4643baac23fad3" category="sidebar">升級ONTAP tools for VMware vSphere</block>
+  <block id="7bc1f449f84cbd0274b17756a6c88276" category="cell">ONTAP工具應用程式的 IP 位址。這是用於存取ONTAP工具 Web 介面（負載平衡器）的 IP 位址</block>
+  <block id="0a975d248a4d2c7d423087028109208e" category="cell">ONTAP工具用於內部通訊的虛擬 IP 位址。此 IP 位址用於具有多個ONTAP工具實例的設定中的內部通訊。此 IP 位址不應與ONTAP工具應用程式的 IP 位址相同。 （Kubernetes 控制平面）</block>
+  <block id="1cd1ce31df98698494f685f0c097277b" category="cell">ONTAP工具管理節點的 DNS 主機名</block>
+  <block id="a6db38ab6788244dd400202a4ac077c9" category="cell">ONTAP工具管理節點的 IPv4 位址。它是管理網路上節點管理介面的唯一 IPv4 位址。</block>
+  <block id="f16dbda2c7cd8f21894d7106eeea0362" category="list-text">從ONTAP工具管理節點 VM 決定ONTAP tools for VMware vSphere部署類型。</block>
+  <block id="a95db542aa3368285d46aaaad77e7189" category="admonition">為了簡化工作流程，大多數輸入選項都預先填入了節點 1 網路詳細資訊。但是，您可以在導航到精靈的最後一頁之前編輯輸入資料。只有在ONTAP工具管理節點上啟用 IPv6 位址時，您才可以輸入其他兩個節點的 IPv6 位址詳細資訊。</block>
+  <block id="38a601e0b95d355705ee6b3483056874" category="admonition">對於ONTAP tools for VMware vSphere，您應該變更ONTAP工具管理節點（即 node1）上的維護控制台使用者密碼。</block>
+  <block id="5130cb465733c9c594c3c6d06c3121b1" category="inline-link">使用 VMware Site Recovery Manager 設定 NFS 資料儲存區的災難復原</block>
+  <block id="240613f793edcc2e992729a70507371a" category="paragraph"><block ref="240613f793edcc2e992729a70507371a" category="inline-link-rx"></block></block>
+  <block id="3904c99d9933639730b4d4478c649721" category="paragraph">對於非 HA 升級，請關閉ONTAP工具 VM；對於 HA 升級，請關閉ONTAP工具管理節點，然後再對虛擬機器 (VM) 設定進行以下變更。</block>
+  <block id="c79e7f78a612cfc75436e834b5708fae" category="list-text">如果是非 HA 升級，請重新啟動ONTAP工具 VM 以反映變更。如果發生 HA 升級，請重新啟動ONTAP工具管理節點以反映節點上的變更。</block>
 </blocks>
