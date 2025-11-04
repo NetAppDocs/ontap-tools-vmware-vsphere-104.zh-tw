@@ -1055,58 +1055,16 @@
   <block id="e047b55bfbc6ebe2f16524db25c3d398" category="paragraph">互通性表工具 (IMT) 包含有關ONTAP、vCenter Server、ESXi 主機和插件應用程式的支援版本的最新資訊。</block>
   <block id="918d32b75f0ab883abba3a8dc0c3ae8d" category="inline-link">互通性矩陣工具</block>
   <block id="d9feb2b730ded2731ab499f4b64cca33" category="paragraph"><block ref="ccafd2400edf7c1aa273a76ad605940f" category="inline-link-rx"></block></block>
-  <block id="539fe4c7849ba8b90945fa7a65b43e41" category="paragraph">下表概述了NetApp所使用的網路連接埠及其用途。請確保這些連接埠處於開放狀態且可訪問，以確保系統正常運作和通訊。請確保已完成必要的網路配置，以允許這些連接埠上的流量，從而使相關服務正常運作。根據您的安全策略，您可能需要設定防火牆或其他安全設備，以允許此類流量在您的網路中傳輸。</block>
   <block id="5ddcf17f54788a5bb9148e8671562c06" category="cell">*港口*</block>
   <block id="dce365633ffb688b7532470dfaf4e118" category="cell">*協定*</block>
-  <block id="0c95054981de037de06e544a52eb3613" category="cell">8143</block>
   <block id="b136ef5f6a01d816991fe3cf7a6ac763" category="cell">TCP</block>
-  <block id="a78ff8f5e1a40f03bf97db00bda0fb5f" category="cell">ONTAP工具的 HTTP/HTTPS 連線。</block>
-  <block id="5bd529d5b07b647a8863cf71e98d651a" category="cell">8043</block>
-  <block id="cb4b69eb9bd10da82c15dca2f86a1385" category="cell">9060</block>
   <block id="b6d767d2f8ed5d21a44b0e5886680cb9" category="cell">22</block>
-  <block id="07ac8d53698f067d7d278deb303748d3" category="cell">Ansible 在叢集設定期間使用此 SSH 連接埠進行通訊。此連接埠是更改維護使用者密碼、狀態訊息等功能所必需的，並且在 HA 配置的情況下更新所有三個節點上的值。</block>
-  <block id="13f3cf8c531952d72e5847c4183e6910" category="cell">443</block>
-  <block id="9bb143d7a2036a80e106dc066c6b01f2" category="cell">這是 VASA 提供程序服務的傳入通訊的直通連接埠。  VASA 提供者自簽章憑證和自訂 CA 憑證託管在此連接埠上。</block>
-  <block id="7e6b20d014d1c659e4eaf20dc2dcd7eb" category="cell">8443</block>
-  <block id="05820e7e588ce97dc4656c92f1b83966" category="cell">此連接埠透過 swagger 和 Manager 使用者介面應用程式託管 API 文件。</block>
-  <block id="add217938e07bb1fd8796e0315b88c10" category="cell">2379</block>
-  <block id="a5cc260611cf9a7ec571425794a59970" category="cell">這是客戶端請求的預設端口，例如獲取、放置、刪除或監視 etcd 鍵值存儲中的鍵。</block>
-  <block id="da4902cb0bc38210839714ebdcf0efc3" category="cell">2380</block>
-  <block id="8251f4d10510ac6bdb1df6c86a270877" category="cell">這是 etcd 叢集的伺服器到伺服器通訊的預設端口，用於 etcd 依賴的 raft 共識演算法來實現資料複製和一致性。</block>
-  <block id="e5e6851e7f7ffd3530e7389e183aa468" category="cell">7472</block>
   <block id="8962b8350728e2f6eb9cbbb07ca70d86" category="cell">TCP/UDP</block>
-  <block id="daf6d8a8d78132982e15d86e6c438d2c" category="cell">這是 prometheus 指標服務連接埠。</block>
-  <block id="5d188b044333b4c62676e0d4f53dade7" category="cell">7946</block>
-  <block id="d0c5d9fb3af3553dbc8aa2d531b38b8f" category="cell">此連接埠用於docker的容器網路發現。</block>
-  <block id="a44ba9086b2b83ccf2baf7c678723449" category="cell">9083</block>
-  <block id="131790b08b90f216c8731a6e1a071001" category="cell">此連接埠是 VASA Provider 服務內部使用的服務連接埠。</block>
-  <block id="abea47ba24142ed16b7d8fbf2c740e0d" category="cell">1162</block>
   <block id="f5ef036b4d8b630721e51fe23489fbc9" category="cell">UDP</block>
-  <block id="ef2d924bd68e8697255e5349875213c7" category="cell">這是 SNMP 陷阱封包連接埠。</block>
   <block id="c03afab54002887e7e1d27a1069e206c" category="cell">6443</block>
-  <block id="344246837eb9cebeda0390f27595098a" category="cell">來源：RKE2 代理節點。目的地：REK2 伺服器節點。描述：Kubernetes API</block>
   <block id="76444b3132fda0e2aca778051d776f1c" category="cell">9345</block>
-  <block id="d1666d7b518ad556f4c40bbdc50656d1" category="cell">來源：RKE2 代理節點。目的地：REK2 伺服器節點。描述：REK2 主管 API</block>
   <block id="6d1e481bdcf159961818823e652a7725" category="cell">8472</block>
-  <block id="a4b2529ef64aa741ab10320d0015b5fd" category="cell">TCP+UDP</block>
-  <block id="8133e71f09aebd3b7b7114054e3996be" category="cell">當使用 flannel VXLAN 時，所有節點都需要能夠透過 UDP 連接埠 8472 存取其他節點。來源：所有 RKE2 節點。目的地：所有 REK2 節點。說明：帶有 VXLAN 的 Canal CNI</block>
-  <block id="183f50a7700982a3ed18ff6d7a5777bf" category="cell">10250</block>
-  <block id="26e6b756f989b3caa29f4476282eb8a7" category="cell">來源：所有 RKE2 節點。目的地：所有 REK2 節點。說明：Kubelet 指標</block>
-  <block id="84826728868f63de4eeb2f3b77cd762b" category="cell">30000-32767</block>
-  <block id="8954b42ae621d3a93011debf55edbeaf" category="cell">來源：所有 RKE2 節點。目的地：所有 REK2 節點。描述：NodePort 連接埠範圍</block>
   <block id="202cb962ac59075b964b07152d234b70" category="cell">123</block>
-  <block id="caf50900f166353ae4848c8c5ddf3383" category="cell">Ntpd 使用此連接埠來執行 NTP 伺服器的驗證。</block>
-  <block id="8c4743470c970199a9d1b885cf3df364" category="cell">137-139</block>
-  <block id="e68652501a313c2d1874782fb9aa6cc3" category="cell">SMB/Windows 共享資料包。</block>
-  <block id="46d045ff5190f6ea93739da6c0aa19bc" category="cell">6789</block>
-  <block id="d64901cbc0ab46c670bc45c9b4a642a8" category="cell">Ceph 監視器（MON）</block>
-  <block id="63bfd6e8f26d1d3537f4c5038264ef36" category="cell">3300</block>
-  <block id="1a8c8d3ae7b0bbd9509b8905da9fa100" category="cell">6800-7300</block>
-  <block id="3e78b2f1a88a42db241d9a8ac8a6c679" category="cell">Ceph 管理器、OSD 和檔案系統 (MDS)。</block>
-  <block id="f033ab37c30201f73f142449d037028d" category="cell">80</block>
-  <block id="b1f7345122d52ddee0d7713bfad8b79b" category="cell">Ceph RADOS 閘道 (RGW)</block>
-  <block id="d82d678e9583c1f5f283ec56fbf1abb7" category="cell">9080</block>
-  <block id="4b32bee2eb6c3d05fc70a5fb2dffcb1c" category="cell">VP HTTP/HTTPS 連線（對於 IPv4 僅來自 127.0.0.0/8 或對於 IPv6 僅來自 ::1/128）。</block>
   <block id="5541521d8d465590f0919510f29154b2" category="section-title">ONTAP tools for VMware vSphere的設定限制</block>
   <block id="96c7de8d06430bb8621d9ca29f8bf76b" category="paragraph">您可以使用下表作為指南來ONTAP tools for VMware vSphere。</block>
   <block id="4043f29990bf7ab4f6f8e863d6aaacfa" category="cell">部署</block>
@@ -2330,7 +2288,6 @@
   <block id="ef9e53e40d78d57abe78283a3603eb4e" category="list-text">在編輯設定視窗的*CD/DVD 磁碟機*欄位下選擇內容庫 ISO 檔案。</block>
   <block id="54a029420d74c0dff69239155cf510b5" category="inline-image-macro">編輯設定</block>
   <block id="2c2d3019834934bb25449edddc396321" category="list-text">選擇 ISO 檔案並選擇 *OK*。選擇 *CD/DVD 光碟機* 欄位上的已連線複選框。<block ref="af57a506b85774ef3a9f849e2b26e258" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="17ed2c4d54e60ea5223b73996ed7aa1f" category="list-text">輸入*3*選擇系統設定選單。</block>
   <block id="baab61a76fb8179e23cdeb844ecfde7e" category="list-text">輸入*7*選擇升級選項。</block>
   <block id="6aa61138e01e77bb590500715db216a4" category="list-text">升級時，將自動執行以下操作：</block>
   <block id="3f50e7c6b4d426580688c6da56153793" category="list-text">證書升級</block>
@@ -2411,4 +2368,69 @@
   <block id="240613f793edcc2e992729a70507371a" category="paragraph"><block ref="240613f793edcc2e992729a70507371a" category="inline-link-rx"></block></block>
   <block id="3904c99d9933639730b4d4478c649721" category="paragraph">對於非 HA 升級，請關閉ONTAP工具 VM；對於 HA 升級，請關閉ONTAP工具管理節點，然後再對虛擬機器 (VM) 設定進行以下變更。</block>
   <block id="c79e7f78a612cfc75436e834b5708fae" category="list-text">如果是非 HA 升級，請重新啟動ONTAP工具 VM 以反映變更。如果發生 HA 升級，請重新啟動ONTAP工具管理節點以反映節點上的變更。</block>
+  <block id="d6200c71714f45121b9b19360cec0630" category="paragraph">下表概述了NetApp所使用的網路連接埠及其用途。連接埠分為三種類型：</block>
+  <block id="ffc9eeee8fddb03c01c7595ed7d9ef20" category="list-text">外部連接埠：這些連接埠可以從 Kubernetes 叢集或節點外部存取。它們允許服務與外部網路或用戶通信，從而實現與叢集環境之外的系統整合。</block>
+  <block id="594ed13b4371cfff54a163037f8027fd" category="list-text">節點間連接埠：這些連接埠允許 Kubernetes 叢集內的節點之間進行通訊。它們是叢集任務（例如資料共享和協同工作）所必需的。對於單節點部署，節點間連接埠僅在節點內部使用，不需要外部存取。節點間連接埠可以接受來自叢集外部的流量。使用防火牆規則阻止節點間連接埠存取網際網路。</block>
+  <block id="a71b2f612491c16fd3ccd7aea87a39ce" category="list-text">內部連接埠：這些連接埠使用 ClusterIP 位址在 Kubernetes 叢集內部進行通訊。它們不會對外暴露，因此無需添加到防火牆規則中。</block>
+  <block id="40be5cc49cd5c75f73a6fb947ad09668" category="admonition">確保所有ONTAP工具節點位於同一子網，以保持彼此之間不間斷的通訊。</block>
+  <block id="32b77a34ac580798094847606125ee3f" category="cell">*服務/元件名稱*</block>
+  <block id="fb3301dd70508451098d3bf2e0f229dc" category="cell">*連接埠類型*</block>
+  <block id="0fe9f736e781b8ae77a4dc265b308ebe" category="cell">ntv-gateway-svc (LB)</block>
+  <block id="225c8f048e5709c6d0264edeb227d6d2" category="cell">443、8443</block>
+  <block id="b206a1b4ea1097761f78e8876f6da779" category="cell">外部的</block>
+  <block id="ee06f8cf62ebebce2fc682c3c88efaca" category="cell">用於 VASA 提供者服務的傳入通訊的直通連接埠。VASA 提供者自簽章憑證和自訂 CA 憑證託管在此連接埠上。</block>
+  <block id="765553e6c7ac8592c389acb9878a050a" category="cell">SSH</block>
+  <block id="135064d8b8ef9153aa4d38ae8782828f" category="cell">用於遠端伺服器登入和命令執行的安全性外殼協定 (Secure Shell)。</block>
+  <block id="0174928de3b4efea8b958f92bc41ae33" category="cell">rke2 伺服器</block>
+  <block id="3d8c374783a1bcc7fa61483357a4da6c" category="cell">節點間</block>
+  <block id="dbb53621f59553f9a8624fa7abf760c6" category="cell">RKE2 監管 API（僅限受信任網路）。</block>
+  <block id="6d61fe6aa1fb019df82898d5144703c6" category="cell">kube-apiserver</block>
+  <block id="cca9fc63e3115af1a58e5c1e6e0b7004" category="cell">Kubernetes API 伺服器連接埠（僅限受信任的網路）。</block>
+  <block id="c1eb43c159e761b5aa656b39c4a19c3c" category="cell">rpcbind/連接埠映射器</block>
+  <block id="faacbda8079718ebf57507b9370a5cb8" category="cell">用於服務間的 RPC 通訊。</block>
+  <block id="06dc4c7a187ef5f93a26b76c544589d9" category="cell">coredns（DNS）</block>
+  <block id="d82c8d1619ad8176d665453cfb2e55f0" category="cell">53</block>
+  <block id="6b6bfb9422fcc063d87dad5518a22387" category="cell">叢集內用於名稱解析的網域名稱系統 (DNS) 服務。</block>
+  <block id="5c54cb8f927a6c5a90622e1c7bd0bda5" category="cell">NTP</block>
+  <block id="28cabd936fc9e4dd676e5a473c991a9d" category="cell">網路時間協定（NTP）用於時間同步。</block>
+  <block id="a226e9fbdfc1c8dd7e7fef4d333f86ed" category="cell">etcd</block>
+  <block id="4c5fe472aba4c61b8035b29586909501" category="cell">2379、2380、2381</block>
+  <block id="ca1016fc257fb4f206daba9c2e97602e" category="cell">用於儲存叢集資料的鍵值儲存。</block>
+  <block id="0a753cc7c42ae02897ec5d952c6eeac3" category="cell">kube-vip</block>
+  <block id="a29d1598024f9e87beab4b98411d48ce" category="cell">2112</block>
+  <block id="6fd0a8d83b6bfaef8466f1eba5737f28" category="cell">Kubernetes API 伺服器連接埠。</block>
+  <block id="703e9c640b9e3ea630f6687938e43c9a" category="cell">kubelet</block>
+  <block id="ef6964cc948c50c0cb0f8e9c8c67d0b8" category="cell">10248、10250</block>
+  <block id="6bc1cc8e5f4a2a59b1b4e10039d894d7" category="cell">Kubernetes 元件</block>
+  <block id="5165268f7f73ee49d7f2962e7d3c2c4c" category="cell">kube-controller</block>
+  <block id="9578a63fbe545bd82cc5bbe749636af1" category="cell">10257</block>
+  <block id="859a378c2edcfab4acc9054bf56d3ad1" category="cell">雲端控制器</block>
+  <block id="bd21307bad44dee908db2db5f6bf23c1" category="cell">10258</block>
+  <block id="81e0da1d45d48cb04172d7ca06e7effc" category="cell">kube-scheduler</block>
+  <block id="e44cf9762b402f5d8b5bc36f60304a15" category="cell">10259</block>
+  <block id="ea11065c99d9485fc7fe03aa1b668c20" category="cell">kube-proxy</block>
+  <block id="de5866a4d3536b773cd15b5e1e56bce8" category="cell">10249、10256</block>
+  <block id="f4928ee7ea1ab0b3ae6cae5224c5cc14" category="cell">加州節點</block>
+  <block id="0bb129af5c1fe13f217dc8c723b47ed6" category="cell">9091、9099</block>
+  <block id="018630692c9be69155a82729a37de8d3" category="cell">Calico 網路組件。</block>
+  <block id="34c54dce528ae11502f7c2908c0e4a21" category="cell">containerd</block>
+  <block id="a17479231dc298309a3fda7d7d00111a" category="cell">10010</block>
+  <block id="3c5a7d3a7abc9326167b18577df244e3" category="cell">容器守護程式服務。</block>
+  <block id="d5cb5397b2f4727babe1417077f0cfd0" category="cell">VXLAN（法蘭絨）</block>
+  <block id="53dc538455257579c3d1a04ad3ee82a7" category="cell">用於 pod 通訊的覆蓋網路。</block>
+  <block id="491f9ca9a65625d41b7536f95a5829ee" category="admonition">對於高可用性部署，請確保所有節點之間都已開啟 UDP 連接埠 8472。此連接埠支援跨節點的 pod 間通訊；阻塞此連接埠將中斷節點間網路連線。</block>
+  <block id="622ebf1679f52188783e45799f3b70cb" category="summary">將新的 VMware vSphere 主機新增至ONTAP tools for VMware vSphere。</block>
+  <block id="5aa6adafd8167a23c389304a0d6e16cb" category="doc">新增新的 VMware vSphere 主機</block>
+  <block id="a8626caa71cb3c13de333ded9fdfe5a8" category="paragraph">將新的 VMware vSphere 主機新增至ONTAP tools for VMware vSphere，以管理和保護主機上的資料儲存。</block>
+  <block id="020968a073f2c7584ecd5aaec97f88b0" category="inline-link">如何使用快速入門工作流程將 ESX 主機新增至 vSphere 叢集</block>
+  <block id="0fdc03dfada440fcb45b31a6944bd23f" category="list-text">依照頁面上的工作流程，將主機新增至 VMware vSphere 叢集：<block ref="cf7664c28a8bbe5a872742d0c68a4d4b" category="inline-link-rx"></block></block>
+  <block id="9764e14a69d1669b765a8ac58a35d864" category="list-text">新增主機後，請前往ONTAP工具主選單，然後在概覽面板中選擇「發現」。等待調查過程完成。或者，您可以等待已規劃的主機發現完成。</block>
+  <block id="c81c266dd6001708c9f3076ddf21214c" category="paragraph">現在， ONTAP tools for VMware vSphere可以發現並管理新的主機。您可以繼續在新主機上管理資料儲存。</block>
+  <block id="11d81e4c78f6be23d5539c87f4f3a7a7" category="list-text"><block ref="c5978119f323c1ceb37571472aaae169" category="inline-link-macro-rx"></block>在新主機上。</block>
+  <block id="063680c82bcd7ffea25b1d4d5c3c6470" category="list-text"><block ref="b5251e50ffdcc6a83e84a63c2a1cd1e4" category="inline-link-macro-rx"></block>在新主機上。</block>
+  <block id="77320a87e6ca763456023daeede0729f" category="inline-link">將 ESX 主機新增至 vSphere 叢集工作流程</block>
+  <block id="91d42183cd7455cc3f88c0c77b61174e" category="admonition">當您使用以下方式新增新的 ESXi 主機時：<block ref="4954232b8967f3dbfaee01742ae35b89" category="inline-link-rx"></block>等待計劃的主機發現完成，然後它才會出現在ONTAP工具中。或者，您可以從NetApp ONTAP工具概覽畫面手動執行發現。</block>
+  <block id="83c2a6ded9467f8048f9a53cabd2e783" category="paragraph-title">相關主題</block>
+  <block id="403e2c858b37daa43171ef37b71e6640" category="paragraph"><block ref="403e2c858b37daa43171ef37b71e6640" category="inline-link-macro-rx"></block></block>
+  <block id="17e484c8a86cb4a7c9192fe5d0393445" category="list-text">輸入*2*選擇系統設定選單。</block>
 </blocks>

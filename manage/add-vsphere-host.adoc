@@ -1,0 +1,27 @@
+---
+permalink: manage/add-vsphere-host.html 
+sidebar: sidebar 
+keywords:  
+summary: 將新的 VMware vSphere 主機新增至ONTAP tools for VMware vSphere。 
+---
+= 新增新的 VMware vSphere 主機
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+將新的 VMware vSphere 主機新增至ONTAP tools for VMware vSphere，以管理和保護主機上的資料儲存。
+
+.步驟
+. 依照頁面上的工作流程，將主機新增至 VMware vSphere 叢集： https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/9-0/use-quickstart-to-add---host-to-a-cluster.html["如何使用快速入門工作流程將 ESX 主機新增至 vSphere 叢集"]
+. 新增主機後，請前往ONTAP工具主選單，然後在概覽面板中選擇「發現」。等待調查過程完成。或者，您可以等待已規劃的主機發現完成。
+
+
+.結果
+現在， ONTAP tools for VMware vSphere可以發現並管理新的主機。您可以繼續在新主機上管理資料儲存。
+
+.相關主題
+* link:../manage/mount-a-vvols-datastore.html["掛載vVols資料存儲"]在新主機上。
+* link:../manage/mount-datastores-on-host.html["掛載 NFS 和 VMFS 資料存儲"]在新主機上。
+

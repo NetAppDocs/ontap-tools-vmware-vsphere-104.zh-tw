@@ -13,6 +13,9 @@ summary: '您可以使用「掛載vVols資料儲存」對話方塊將 VMware 虛
 [role="lead"]
 您可以將 VMware 虛擬磁碟區 (vVols) 資料儲存掛載到一個或多個其他主機，以便為其他主機提供儲存存取。您只能透過 API 卸載vVols資料儲存。
 
+
+NOTE: 當您使用以下方式新增新的 ESXi 主機時： https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/9-0/use-quickstart-to-add---host-to-a-cluster.html["將 ESX 主機新增至 vSphere 叢集工作流程"]等待計劃的主機發現完成，然後它才會出現在ONTAP工具中。或者，您可以從NetApp ONTAP工具概覽畫面手動執行發現。
+
 .步驟
 . 從 vSphere Client 主頁中，選擇「主機和叢集」。
 . 在導覽窗格中，選擇包含資料儲存區的資料中心。
@@ -21,3 +24,6 @@ summary: '您可以使用「掛載vVols資料儲存」對話方塊將 VMware 虛
 
 
 您可以在最近任務面板中追蹤進度。
+
+.相關主題
+link:../manage/add-vsphere-host.html["新增新的 VMware vSphere 主機"]

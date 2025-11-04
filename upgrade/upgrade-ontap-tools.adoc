@@ -108,7 +108,7 @@ summary: HA 和非 HA 部署均支援升級。
 . 選擇 ISO 檔案並選擇 *OK*。選擇 *CD/DVD 光碟機* 欄位上的已連線複選框。image:../media/primaryvm-edit-settings.png["編輯設定"]
 . 從 vCenter Server 開啟ONTAP工具控制台。
 . 以維護使用者登入。
-. 輸入*3*選擇系統設定選單。
+. 輸入*2*選擇系統設定選單。
 . 輸入*7*選擇升級選項。
 . 升級時，將自動執行以下操作：
 +
