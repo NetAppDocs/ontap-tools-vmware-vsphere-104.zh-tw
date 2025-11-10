@@ -1775,14 +1775,8 @@
   <block id="9f147a250dd9a5cd9d9745eb3f5f7668" category="paragraph">更新AutoSupport代理 URL，以確保在使用代理伺服器進行網路存取控製或安全措施的情況下AutoSupport功能正常運作。它允許AutoSupport資料透過適當的代理進行路由，從而實現安全傳輸和合規性。</block>
   <block id="d49d8a5effc0a522fa72d0ff457066df" category="list-text">輸入有效的*代理 URL*並儲存變更。</block>
   <block id="eb587ff6958c1e65b721306af8fa8e3b" category="paragraph">如果您停用AutoSupport，代理 URL 也會停用。</block>
-  <block id="a6f65a806180d1ff3c8d5e553e634e9d" category="summary">您可以使用維護控制台更新 vCenter Server 和ONTAP憑證。</block>
-  <block id="f72e000ebb4c7bedf651a46e595f1371" category="doc">更新 vCenter Server 和ONTAP憑證</block>
-  <block id="7ac19aa441feceb73519a5108d4cc366" category="paragraph">您可以使用維護控制台更新 vCenter Server 執行個體和ONTAP憑證。</block>
   <block id="21a56b485fb6cd9f7c9cc8f514440950" category="paragraph">您需要擁有維護使用者登入憑證。</block>
-  <block id="1f8bb3d639d4544a4979b060d7cccc88" category="paragraph">如果您在部署後變更了 vCenter Server、 ONTAP或 Data LIF 的憑證，則需要使用此程序更新憑證。</block>
   <block id="cea5a13834803a12adaeb249165351df" category="list-text">進入<block ref="c81e728d9d4c2f636f067f89cc14862c" prefix=" " category="inline-code"></block>選擇系統配置選單。</block>
-  <block id="86ce6e9c3af571980099ca308cd245e3" category="list-text">進入<block ref="45c48cce2e2d7fbdea1afc51c7c6ad26" prefix=" " category="inline-code"></block>更改ONTAP憑證。</block>
-  <block id="207c00a73dde0270cc0fbc7ce9c5f2fd" category="list-text">進入<block ref="d3d9446802a44259755d38e6d163e820" prefix=" " category="inline-code"></block>變更 vCenter 憑證。</block>
   <block id="d3cd4bffc1abc46e60337f8438f457b9" category="summary">儲存視圖顯示虛擬機器建立的vVols清單。</block>
   <block id="f6607063532d19e10b746de0f6108f15" category="doc">虛擬機器儲存視圖</block>
   <block id="9d850336a156831a9095fd981a1a0c23" category="admonition">此視圖適用於至少安裝了適用於 VMware vSphere 管理的vVols資料儲存相關磁碟的 ONTAP tools for VMware vSphere的虛擬機器。</block>
@@ -2284,7 +2278,6 @@
   <block id="cd457aeee08a9f6476660a1f15284160" category="paragraph">新增硬碟後，更新虛擬機器的相應配置的資源並重新啟動主虛擬機器。</block>
   <block id="82c4bde04ac809c6d15f232949e072ce" category="paragraph">將建立一個新的 HDD。動態儲存配置器使用此 HDD 來產生或複製磁碟區。</block>
   <block id="b06f0e274f6c746f0d30521b5c7f392e" category="list-text">將ONTAP tools for VMware vSphere上傳至內容庫。</block>
-  <block id="dd5382558ec4a47dfbc203fb25698772" category="list-text">在主 VM 頁面中，選擇 *操作* &gt; *編輯設定*</block>
   <block id="ef9e53e40d78d57abe78283a3603eb4e" category="list-text">在編輯設定視窗的*CD/DVD 磁碟機*欄位下選擇內容庫 ISO 檔案。</block>
   <block id="54a029420d74c0dff69239155cf510b5" category="inline-image-macro">編輯設定</block>
   <block id="2c2d3019834934bb25449edddc396321" category="list-text">選擇 ISO 檔案並選擇 *OK*。選擇 *CD/DVD 光碟機* 欄位上的已連線複選框。<block ref="af57a506b85774ef3a9f849e2b26e258" category="inline-image-macro-rx" type="image"></block></block>
@@ -2433,4 +2426,12 @@
   <block id="83c2a6ded9467f8048f9a53cabd2e783" category="paragraph-title">相關主題</block>
   <block id="403e2c858b37daa43171ef37b71e6640" category="paragraph"><block ref="403e2c858b37daa43171ef37b71e6640" category="inline-link-macro-rx"></block></block>
   <block id="17e484c8a86cb4a7c9192fe5d0393445" category="list-text">輸入*2*選擇系統設定選單。</block>
+  <block id="f59d6f6c2fbe5659bab55bb335b17871" category="summary">您可以使用維護控制台更新 vCenter Server 憑證。</block>
+  <block id="d546c3915b2e0bc231d2bd0456f2d736" category="doc">更新 vCenter Server 憑證</block>
+  <block id="6e73e8087488ddc10c72aeec0f27cc93" category="paragraph">您可以使用維護控制台更新 vCenter Server 執行個體憑證。</block>
+  <block id="1f2db2b2d242479839579d1cc7f9d26e" category="paragraph">如果您在部署後變更了 vCenter Server 的憑證，則需要使用此程序更新憑證。</block>
+  <block id="a38dbe6982c223d82e53b7d0feab69ce" category="list-text">進入<block ref="c9f0f895fb98ab9159f51fd0297e236d" prefix=" " category="inline-code"></block> 變更 vCenter 憑證。</block>
+  <block id="a928a1b805644ea87a643f7f8d60a477" category="list-text">在主 VM 頁面中，選擇「操作」&gt;「編輯設定」。若要確定主虛擬機器名稱：</block>
+  <block id="75a86edd37c9b2122be450b28fa09149" category="list-text">在任意節點上啟用診斷 shell</block>
+  <block id="e016d50ae26af4214e6a864c1c2c8db5" category="list-text">運行以下命令：<block ref="1ebe86b64a17c55ae52f4488cffae75f" prefix=" " category="inline-code"></block></block>
 </blocks>

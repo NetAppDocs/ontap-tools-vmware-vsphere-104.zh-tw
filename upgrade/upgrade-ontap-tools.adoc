@@ -103,7 +103,13 @@ summary: HA 和非 HA 部署均支援升級。
 
 .步驟
 . 將ONTAP tools for VMware vSphere上傳至內容庫。
-. 在主 VM 頁面中，選擇 *操作* > *編輯設定*
+. 在主 VM 頁面中，選擇「操作」>「編輯設定」。若要確定主虛擬機器名稱：
++
+.. 在任意節點上啟用診斷 shell
+.. 運行以下命令：
+`grep sourceHost /opt/netapp/meta/ansible_vars.yaml`
+
+
 . 在編輯設定視窗的*CD/DVD 磁碟機*欄位下選擇內容庫 ISO 檔案。
 . 選擇 ISO 檔案並選擇 *OK*。選擇 *CD/DVD 光碟機* 欄位上的已連線複選框。image:../media/primaryvm-edit-settings.png["編輯設定"]
 . 從 vCenter Server 開啟ONTAP工具控制台。
