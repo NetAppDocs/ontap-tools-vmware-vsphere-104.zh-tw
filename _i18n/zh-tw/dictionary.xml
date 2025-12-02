@@ -1806,10 +1806,6 @@
   <block id="305675e418fa7f87d5c522fec4e29a3d" category="list-text">ONTAP tools for VMware vSphere的 OVA。</block>
   <block id="a8534b379980a6bb97915d2890ad3522" category="inline-link-macro">新增 vCenter Server 執行個體</block>
   <block id="3b89ab69ad47240835c0cd31ab9230d1" category="list-text">新增要移轉到ONTAP tools for VMware vSphere的 vCenter Server 執行個體。請參閱<block ref="946669e64e0e42585f18099dec81ec03" category="inline-link-macro-rx"></block>了解更多。</block>
-  <block id="db9ce82f740ff3a9f2ad609cd7d296c9" category="list-text">透過 vCenter 伺服器 API 在本地為ONTAP工具插件裝載儲存後端。</block>
-  <block id="b5bf1eb9fc501e53457cde004db09086" category="list-text">從 Swagger 或 Postman 發出以下 API 進行遷移。</block>
-  <block id="df0e042574783c577a323cad7e00d03f" category="paragraph">curl -X POST <block ref="60b2cf26de252a4c9c938a4ded6aed78" prefix=" " category="inline-code"></block></block>
-  <block id="1899392092401675b3ca134eaf0dae0e" category="paragraph">您可以透過此 URL 存取 Swagger： <block ref="2b09eb15e8e904ff30adf6fd75069681" prefix=" " category="inline-code"></block> 。</block>
   <block id="4b2e39d58448cd6246edaab6e2789245" category="paragraph">HTTP 方法和端點</block>
   <block id="0b0231c1815d06ad4701a091ce91a740" category="paragraph">此 REST API 呼叫使用下列方法和端點。</block>
   <block id="d40e9450da0b47980b8d20417aa05da7" category="cell">HTTP 方法</block>
@@ -1818,36 +1814,21 @@
   <block id="b46b241331d5bfe90afd25ec36605c07" category="paragraph">*加工類型*</block>
   <block id="288aae25bc408055f50c21c991903a44" category="paragraph">非同步</block>
   <block id="a62fbfbe1fa2fbcd3ff1ab71d9f0cf7a" category="paragraph">*Curl 範例*</block>
-  <block id="6e086f74a5eaa2061811529e1d6a623e" category="paragraph">curl -X POST<block ref="c5820eec1fb061702ab2f34b24d1d295" category="inline-link-rx"></block> \ --header 'x-auth：&lt;auth_token&gt;' \ --header 'Content-Type：application/json' \ --data '{“otv_ip”：“xx.xx.xx.xx”，“vasa_provider_credentials”：{“username”：“xxxxx.”，“vasa_provider_credentials”：{“用戶名”：“xxxxx”，“*Kwords”，”？</block>
   <block id="654a9186fe9a47c1397903b9228f2c36" category="paragraph">其他版本遷移的請求主體：</block>
-  <block id="684e740f5c7b2c5d6085a2342428c783" category="paragraph">{ “otv_ip”：“xx.xx.xx.xx”， “vasa_provider_credentials”：{ “用戶名”：“xxxxx”，“密碼”：“*******” } }</block>
   <block id="18009c9216d59118fb460184e2ec0a3d" category="paragraph">JSON 輸出範例</block>
   <block id="492fdcd87814cf3c979a27709fc29350" category="paragraph">傳回一個作業對象。您應該保存作業標識符以便在下一步中使用它。</block>
-  <block id="372ff7cae2da4e0d6205af97a48a61eb" category="paragraph">{ “id”：123，“migration_id”：“d50073ce-35b4-4c51-9d2e-4ce66f802c35”，“status”：“正在運行”}</block>
   <block id="91377d2edc3d930017c1b8c4679bdb89" category="list-text">在 Swagger 中使用以下 URI 檢查狀態：</block>
-  <block id="b02dd8a7793406878f54951af581d6f2" category="paragraph">完成工作後，查看遷移報告。該報告包含在工作數據中，可以從工作回應中存取。</block>
   <block id="4551975cd29f0bfb98cd73d6f5cb8388" category="inline-link-macro">註冊 VASA 提供程序</block>
-  <block id="fafb1a9cdf3a5eb6029da27aa9e99060" category="list-text">將ONTAP tools for VMware vSphere新增至 vCenter Server 並<block ref="c283b8bc021fee7e6c856fce39783a46" category="inline-link-macro-rx"></block>使用適用於ONTAP tools for VMware vSphere。</block>
   <block id="588348e2b65e0439aeb5d92799e13781" category="inline-link-macro">啟用 VASA 提供程序</block>
   <block id="8c6bc1d231b93b5d6466c303391dba0b" category="list-text"><block ref="3f0f412beb77bd4bc4dc7f97f661a149" category="inline-link-macro-rx"></block>ONTAP tools for VMware vSphere上的服務。</block>
-  <block id="009dbe214d15197679fe0b95a8a01cc3" category="list-text">從維護控制台停止ONTAP tools for VMware vSphere。</block>
-  <block id="ffdec42d5d13cecca850e153f75748ec" category="paragraph">請勿刪除 VASA 提供者。</block>
   <block id="c7a3e6d485a07dd9c95f9051e9912372" category="paragraph">舊 VASA 提供者停止後，vCenter Server 將故障轉移到ONTAP tools for VMware vSphere。所有資料儲存庫和虛擬機器均可訪問，並由適用於ONTAP tools for VMware vSphere提供服務。</block>
-  <block id="9a75388e84716581ed710b23451155ae" category="list-text">只有在觸發資料儲存發現作業後，從ONTAP tools for VMware vSphere遷移的 NFS 和 VMFS 資料儲存才會顯示在ONTAP tools for VMware vSphere中，這可能需要長達 30 分鐘才能完成。驗證資料儲存區是否在 VMware vSphere 外掛程式使用者介面頁面的ONTAP工具概覽頁面上可見。</block>
   <block id="96b2fedcc932770f843418dedfe7f004" category="list-text">使用 Swagger 或 Postman 中的以下 API 執行補丁遷移：</block>
-  <block id="90299a7739327ddb8f7bdb36ab48e642" category="paragraph">curl -X 補丁<block ref="8083d85a2708038b6e3e98616b6fee1c" prefix=" " category="inline-code"></block></block>
   <block id="f663ec26fcc5dbf0e82a2df73c30a3e3" category="paragraph">修補操作請求體為空。</block>
   <block id="84a75f6b0a005e405f2680d9ab007b12" category="admonition">UUID 是回應遷移後 API 回傳的遷移 UUID。</block>
   <block id="6282a0b7136c4d492053004c35f8e976" category="paragraph">執行補丁遷移API後，所有虛擬機器都符合儲存策略。</block>
   <block id="5eae8ab983bf75db57974d8e9b94ad5d" category="paragraph">完成遷移並將ONTAP Tools 10.4 註冊到 vCenter Server 後，請依照下列步驟操作：</block>
-  <block id="5db743b53293821cee54f2f6de3ecd01" category="list-text">等待*發現*完成，憑證將在所有主機上自動刷新。</block>
-  <block id="4e3b183a92792cfb6d46be8c763d9b1f" category="list-text">啟動資料儲存區和虛擬機器操作之前，請留出足夠的時間。所需的等待時間會因配置中的主機、資料儲存區和虛擬機器的數量而異。等待失敗可能會導致間歇性操作失敗。</block>
   <block id="76dc960090031506bd84c78f38fe040e" category="paragraph">升級後，如果虛擬機器的合規性狀態已過時，請使用以下步驟重新套用儲存策略：</block>
-  <block id="15e560ab707fa2bf2b7b0833adbe8bb9" category="list-text">導航至資料儲存並選擇*摘要*&gt;*虛擬機器儲存策略*。</block>
-  <block id="0f4e59ab0634b5a1f97823bc94b0f039" category="paragraph">*虛擬機器儲存策略合規性*下的合規性狀態顯示為*過時*。</block>
-  <block id="325367fe0120f7c1592bf3028da84bee" category="list-text">選擇儲存虛擬機策​​略和對應的虛擬機</block>
   <block id="c16f1c2a54634bdad6dee177f8131ef5" category="list-text">選擇“*應用*”</block>
-  <block id="b180a96ee0634f423c4629bca8858873" category="paragraph">*VM 儲存策略合規性* 下的合規性狀態現在顯示為合規性。</block>
   <block id="3e771c8c630b8cfd1ddd0dfc7e8e7c85" category="list-text"><block ref="3e771c8c630b8cfd1ddd0dfc7e8e7c85" category="inline-link-macro-rx"></block></block>
   <block id="472d4465d1363ede67b4fdb4c6e0e1ff" category="inline-link-macro">將適用於ONTAP tools for VMware vSphere升級至 10.4</block>
   <block id="601dd8c7000a195659d470e737339c2d" category="list-text"><block ref="601dd8c7000a195659d470e737339c2d" category="inline-link-macro-rx"></block></block>
@@ -2434,4 +2415,31 @@
   <block id="a928a1b805644ea87a643f7f8d60a477" category="list-text">在主 VM 頁面中，選擇「操作」&gt;「編輯設定」。若要確定主虛擬機器名稱：</block>
   <block id="75a86edd37c9b2122be450b28fa09149" category="list-text">在任意節點上啟用診斷 shell</block>
   <block id="e016d50ae26af4214e6a864c1c2c8db5" category="list-text">運行以下命令：<block ref="1ebe86b64a17c55ae52f4488cffae75f" prefix=" " category="inline-code"></block></block>
+  <block id="b809c5a7988bfdd1414767cce03f2847" category="paragraph">依照本節中的步驟，將 VASA 提供者從ONTAP tools for VMware vSphere移轉到ONTAP tools for VMware vSphere，並更新 VMware Live Site Recovery 裝置上的儲存複製適配器 (SRA)。</block>
+  <block id="877fa9890117aba991c74708f71f47f8" category="inline-link-macro">使用 vSphere 用戶端介面新增儲存後端</block>
+  <block id="919f060162028da82b75ccf8400335b5" category="list-text">透過 vCenter Server API 將儲存後端本機整合到ONTAP工具插件中。請參閱<block ref="d60b7308493aa415dfe7fcd24539d7e4" category="inline-link-macro-rx"></block>了解更多。</block>
+  <block id="25c9412d6c1bba60178b87bc1c36e2bc" category="list-text">取得存取權杖以驗證 REST API 請求。請使用以下範例，並將變數替換為特定於您環境的值。</block>
+  <block id="015532da8c9d57cae6a455e16903aeea" category="paragraph">複製並保存回應中傳回的存取令牌。。從 Swagger 或 Postman 發出以下 API 進行遷移。</block>
+  <block id="ef3757c78eac1b69ac11aa4b7aac219b" category="paragraph">您可以透過以下網址存取 Swagger：<block ref="4c9882763c7aaf0e39789953130b5809" prefix=" " category="inline-code"></block> ， 例如：<block ref="801eb101d5a4938360a68df419d61538" prefix=" " category="inline-code"></block> 。</block>
+  <block id="cf78d06b764932bff9c08da08c607da8" category="paragraph">系統傳回一個作業對象。儲存作業標識符以便在下一個步驟中使用。</block>
+  <block id="e79f49713689b554500076c29f3b0f0d" category="paragraph">作業完成後，請查看作業回應中的遷移報告。</block>
+  <block id="7b7cd5f7fba7393568ce0f3e6a816e91" category="list-text">將ONTAP tools for VMware vSphere新增至 vCenter Server。</block>
+  <block id="2b0f4f36b8001dce4b825bc0fecf2e17" category="list-text">使用ONTAP tools for VMware vSphere 的VASA 提供者。有關說明，請參閱<block ref="c283b8bc021fee7e6c856fce39783a46" category="inline-link-macro-rx"></block>。</block>
+  <block id="1a464e16899d07e725803f6174f5e1fb" category="list-text">註冊後，請在 vSphere Client 的「儲存提供者」下驗證 VASA 提供者的名稱及其狀態。VASA 提供者應在線上顯示，確認註冊成功。</block>
+  <block id="7449849ed5e181a25bd151a90c66a6d6" category="list-text">請依照下列步驟停止ONTAP tools for VMware vSphere：</block>
+  <block id="3076f368d1fb701b7d40be8f8c0f7d05" category="list-text">在ONTAP工具 9.x 中，開啟 Web 控制台。</block>
+  <block id="6979cadafb4e3b67b5a0bda70225f50f" category="list-text">存取維護控制台。</block>
+  <block id="b94aaa9c1bb758125ee360d9695799cf" category="list-text">進入<block ref="c4ca4238a0b923820dcc509a6f75849b" prefix=" " category="inline-code"></block>選擇“應用程式配置”選單。</block>
+  <block id="64b8cf9b632898bad5081763af1fbebd" category="list-text">進入<block ref="e4da3b7fbbce2345d7772b0674a318d5" prefix=" " category="inline-code"></block>停止 VASA Provider 和 SRA 服務。</block>
+  <block id="ccba785a416529522c083f4606900605" category="list-text">在 vSphere Client 中，導覽至「清單」&gt;「儲存提供者」。</block>
+  <block id="836dd342f378a7b29dcbef5f07ab1b95" category="list-text">從儲存後端選擇ONTAP工具 9.x VASA 提供程序，然後按一下「刪除」。</block>
+  <block id="0f25142cbd4e14fcec016e48ec31b8d3" category="list-text">遷移後的 NFS 和 VMFS 資料儲存會在資料儲存發現作業完成後出現在ONTAP tools for VMware vSphere中，該作業可能需要長達 30 分鐘。在概覽頁面上檢查它們的可見性。</block>
+  <block id="f191ddd9150b5ab75986a7a94e92817b" category="paragraph">請在 Swagger 中使用以下 URI：</block>
+  <block id="03785cc80d260849e9ee53ea9ad304bf" category="list-text">等待*發現*完成，系統會自動在所有主機上刷新憑證。</block>
+  <block id="32684456982f6de7f06ceb0a0a814307" category="list-text">等待資料儲存區和虛擬機器操作開始。等待時間取決於主機、資料儲存和虛擬機器的數量。如果您不等待，您可能會偶爾看到失敗。</block>
+  <block id="bb14930b9106b492b967f6186850d39a" category="list-text">前往資料儲存並選擇*摘要*&gt;*虛擬機器儲存策略*。</block>
+  <block id="b1ab61155d65e233fd4ec88afa025ab6" category="paragraph">系統顯示*虛擬機器儲存策略合規性*下的合規性狀態為*過時*。</block>
+  <block id="f6b1c86e1a3631a7b24c17cc093409bb" category="list-text">選擇儲存虛擬機器策略和對應的虛擬機器。</block>
+  <block id="24347b3ddf5a25cc9c27e54ae285ade1" category="list-text">選擇*應用*。</block>
+  <block id="60bf6f2a83b056efb443713ab85c7cc9" category="paragraph">*虛擬機器儲存策略合規性*下的合規性狀態顯示為合規性。相關資訊</block>
 </blocks>
